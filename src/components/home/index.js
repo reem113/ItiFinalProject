@@ -1,8 +1,9 @@
 import React from "react";
+import MainSlider from "./mainSlider";
 
 class Home extends React.Component {
   render() {
-    return <h1>home</h1>;
+    return <MainSlider />;
   }
 }
 
