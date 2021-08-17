@@ -64,7 +64,7 @@ function Login() {
                         Don't have an account? <Link class="ml-2 signup-link" to="/signup"><u>Sign Up</u></Link>
                     </div>
                     <div class="d-flex justify-content-center links form-text">
-                        <Link href="#">Forgot your password?</Link>
+                        <Link to="#">Forgot your password?</Link>
                     </div>
                 </div>
             </div>

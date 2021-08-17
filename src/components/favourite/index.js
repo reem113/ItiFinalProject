@@ -1,4 +1,5 @@
 import React from "react";
+import Footer from "../footer";
 
 class Favourite extends React.Component {
   constructor(props) {
@@ -7,7 +8,12 @@ class Favourite extends React.Component {
     this.state = {};
   }
   render() {
-    return <h1>Favourite</h1>;
+    return (
+      <>
+    <h1>Favourite</h1>
+      <Footer/>
+      </>
+      );
   }
 }
 
