@@ -43,7 +43,7 @@ class Login extends React.Component {
                             Don't have an account? <Link class="ml-2 signup-link" to="/signup"><u>Sign Up</u></Link>
                         </div>
                         <div class="d-flex justify-content-center links form-text">
-                            <a href="#">Forgot your password?</a>
+                            <Link to=''>Forgot your password?</Link>
                         </div>
                     </div>
                 </div>

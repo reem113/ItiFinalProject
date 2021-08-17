@@ -203,3 +203,51 @@ body {
 
 
 td,th{vertical-align: middle}
+
+.footer
+{
+background: rgb(36, 35, 35);
+height: auto;
+color: white;
+padding-top: 5%;
+}
+.finalfooter{
+    padding: 50px 0px;
+}
+h4{
+  color: white;
+  
+}
+.hhr{
+  
+    width: 20%;
+    height: 3px;
+    background-color: white;
+}
+
+hr{
+  background-color: white;
+}
+.para{
+  color: rgb(219, 211, 211);
+  }
+  .link{
+    color: rgb(211, 201, 201);
+    text-decoration: none;
+    display:block;
+    padding: 10px;
+
+}
+.link>a:hover{
+    text-decoration: none;
+     color: white;
+}
+.links{
+  display: inline;
+   
+}
+.links{
+  i{
+    margin: 5px;
+  }
+}
