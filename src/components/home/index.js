@@ -4,6 +4,7 @@ import MainSlider from "./mainSlider";
 class Home extends React.Component {
   render() {
     return <MainSlider />;
+
   }
 }
 

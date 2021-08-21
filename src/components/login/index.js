@@ -1,15 +1,17 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import Logo from "../../images/logo_company.svg";
-import { Link } from "react-router-dom";
+import { Link, Redirect, useHistory } from "react-router-dom";
+import $ from "jquery";
 
 
 
 import { AiOutlineLock, AiOutlineUser } from "react-icons/ai";
 
-function Login() {
+export default function Login() {
 
     const [email, setEmail] = useState();
     const [password, setPassword] = useState();
+    const history = useHistory();
 
     function loginUser(e) {
         e.preventDefault()
@@ -24,7 +26,24 @@ function Login() {
             .then(response => response.json())
             .then(data => {
                 console.log('Success:', data);
-                if (!data.success) console.log("---------------------")
+                if (!data.success) {
+                    console.log(data.message);
+                    if (data.message == "This email doesn't exist!") {
+                        $(".email-err").text(data.message);
+                    } else if (data.message == "Authentication failed, password is incorrect!") {
+                        $(".email-err").hide();
+                        $(".psw-err").text(data.message);
+                    }
+
+                }
+                else {
+                    $(".email-err").hide();
+                    $(".psw-err").hide();
+                    localStorage.setItem("User Token", data.token);
+                    localStorage.setItem("Email", data.userEmail);
+                    localStorage.setItem("ID", data.userId);
+                    history.push("/");
+                }
             })
             .catch((error) => {
                 console.error('Error:', error);
@@ -38,15 +57,20 @@ function Login() {
                     <img src={Logo} alt="Logo" />
                 </div>
                 <form method="POST" onSubmit={(event) => { loginUser(event) }}>
-                    <div class="input-group mb-3">
-                        <span class="input-group-text p-4"><AiOutlineUser /></span>
-                        <input type="email" name="email" class="form-control" onChange={(event) => { setEmail(event.target.value) }} placeholder="E-mail" />
+                    <div class="email-div input-group">
+                        {/* <span class="input-group-text p-4"><AiOutlineUser /></span> */}
+                        <input type="email" name="email" class="form-control" onChange={(event) => { setEmail(event.target.value) }} placeholder="E-mail" required />
                     </div>
 
-                    <div class="input-group mb-2">
-                        <span class="input-group-text p-4"><AiOutlineLock /></span>
-                        <input type="password" name="password" class="form-control" onChange={(event) => { setPassword(event.target.value) }} placeholder="Password" />
+                    <span className="email-err"></span>
+
+
+                    <div class="psw-div input-group mt-3 mb-2">
+                        {/* <span class="input-group-text p-4"><AiOutlineLock /></span> */}
+                        <input type="password" name="password" class="form-control" onChange={(event) => { setPassword(event.target.value) }} placeholder="Password" required />
                     </div>
+
+                    <span className="psw-err"></span>
 
                     <div class="form-group">
                         <div class="custom-control custom-checkbox">
@@ -71,5 +95,3 @@ function Login() {
         </>
     )
 }
-
-export default Login
