@@ -131,7 +131,14 @@ input[type="radio"] ~ label:after {
     @extend %shadow;
   }
 }
-
+.btn-border {
+  border: 1px solid $black-color;
+  &:hover,
+  &focus {
+    background-color: $black-color;
+    color: $white-color;
+  }
+}
 .btn-hover {
   position: relative;
   overflow: hidden;
@@ -501,5 +508,6 @@ section {
     color: $dark-color;
     font-family: Libre Baskerville;
     font-style: italic;
+    margin-bottom: 0;
   }
 }
