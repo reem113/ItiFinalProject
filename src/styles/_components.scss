@@ -549,3 +549,53 @@ th {
     right: 60px;
   }
 }
+
+.full-bg-cover {
+  background-image: url(https://www.radiustheme.com/demo/wordpress/themes/metro/wp-content/uploads/2020/02/bench-accounting-scaled.jpg);
+  background-position: bottom center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  min-height: 400px;
+  background-attachment: fixed;
+  .main-title {
+    color: $black-color;
+    font-weight: 600;
+    font-size: 36px;
+    line-height: 1.3;
+    margin-bottom: 0;
+  }
+  p {
+    margin: 20px 0 0;
+    color: $black-color;
+  }
+  a {
+    margin-top: 30px;
+  }
+}
+
+.footer {
+  background-color: $black-color;
+  color: $white-color;
+  padding-bottom: 30px;
+  h4 {
+    color: $white-color;
+    font-size: 18px;
+  }
+  .img {
+    width: 150px;
+    margin-bottom: 20px;
+  }
+  .footer-links {
+    a {
+      display: block;
+      margin-bottom: 10px;
+      &:hover,
+      &:focus {
+        color: $control-color;
+      }
+    }
+  }
+  span {
+    display: inline-block;
+  }
+}

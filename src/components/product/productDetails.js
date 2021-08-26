@@ -18,6 +18,7 @@ const ProductDetails = () => {
     };
     getSingleProduct();
   }, [id]);
+  console.log("product details==>", product);
   return (
     <div>
       <div className="details">

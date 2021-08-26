@@ -1,5 +1,4 @@
 import React from "react";
-import Footer from "../footer";
 
 class Favourite extends React.Component {
   constructor(props) {
@@ -10,10 +9,9 @@ class Favourite extends React.Component {
   render() {
     return (
       <>
-    <h1>Favourite</h1>
-      <Footer/>
+        <h1>Favourite</h1>
       </>
-      );
+    );
   }
 }
 

@@ -111,7 +111,7 @@ input[type="radio"] ~ label:after {
 }
 
 .btn {
-  border-radius: $radius;
+  border-radius: 0;
   @extend %ease;
 }
 
@@ -121,7 +121,7 @@ input[type="radio"] ~ label:after {
   color: $white-color;
   text-transform: uppercase;
   border: 1px solid $black-color;
-  border-radius: $radius;
+  border-radius: 0;
 
   &:hover,
   &:focus {
