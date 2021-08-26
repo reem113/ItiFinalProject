@@ -1,15 +1,13 @@
 import React from "react";
-import Logo from "../../logo_white.png";
+import Logo from "../../images/logo_white.png";
 import { Link } from "react-router-dom";
 import {
   AiFillFacebook,
-  AiFillTwitterSquare,
-  AiFillLinkedin,
+  AiFillTwitterCircle,
   AiFillInstagram,
 } from "react-icons/ai";
-import { FaMapMarkerAlt } from "react-icons/fa";
 import { BiPhoneCall } from "react-icons/bi";
-
+import { FaMapMarkerAlt } from "react-icons/fa";
 class Footer extends React.Component {
   render() {
     return (
@@ -24,7 +22,7 @@ class Footer extends React.Component {
                 <span className="mx-2">
                   <FaMapMarkerAlt />
                 </span>
-                59 Mansoura University, ITI
+                59 Egypt, Mansoura University,ITI
               </p>
               <p className="d-block">
                 <span className="mx-2">
@@ -99,13 +97,12 @@ class Footer extends React.Component {
           </div>
           <hr />
           <div className="final-footer">
-            <div className="d-flex flex-row align-items-center justify-content-between">
+            <div className="d-flex flex-row justify-content-between">
               <p>
                 <span dangerouslySetInnerHTML={{ __html: "&copy;" }} />{" "}
                 Copyright 2021.
               </p>
-
-              <div className="social-links">
+              <div className="links">
                 <Link to="https://www.facebook.com/">
                   <i>
                     <AiFillFacebook size={25} />
@@ -113,17 +110,12 @@ class Footer extends React.Component {
                 </Link>
                 <Link to="https://www.twitter.com/">
                   <i>
-                    <AiFillTwitterSquare size={25} />
+                    <AiFillTwitterCircle size={25} />
                   </i>
                 </Link>
                 <Link to="https://www.linkedin.com/">
                   <i>
                     <AiFillInstagram size={25} />
-                  </i>
-                </Link>
-                <Link to="https://www.github.com/">
-                  <i>
-                    <AiFillLinkedin size={25} />
                   </i>
                 </Link>
               </div>

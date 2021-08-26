@@ -2,14 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 class FullBanner extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {};
-  }
   render() {
-    const { someProp } = this.props;
-
     return (
       <section className="section full-bg-cover">
         <div className="container">
