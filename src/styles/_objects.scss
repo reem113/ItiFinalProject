@@ -111,56 +111,34 @@ input[type="radio"] ~ label:after {
 }
 
 .btn {
-  border-radius: $radius;
+  border-radius: 0;
   @extend %ease;
 }
 
 .btn-main {
-  width: 50%;
   text-align: center;
-  background-color: #c50505;
+  background-color: $black-color;
   color: $white-color;
   text-transform: uppercase;
-  font-size: large;
-  padding: 2%;
-  border: 1px solid #c50505;
-  border-radius: $radius;
+  border: 1px solid $black-color;
+  border-radius: 0;
 
   &:hover,
   &:focus {
-    opacity: 0.8;
     color: $white-color;
     outline: none;
     @extend %ease;
     @extend %shadow;
   }
 }
-
-.btn-w-arrow {
-  position: relative;
-
-  &:after {
-    content: "\f060";
-    font-family: "Font Awesome 5 Free";
-    font-weight: 900;
-    color: $white-color;
-    visibility: hidden;
-    opacity: 0;
-    margin-right: 5px;
-    font-size: 0;
-    @extend %ease;
-  }
-
+.btn-border {
+  border: 1px solid $black-color;
   &:hover,
-  &:focus {
-    &:after {
-      font-size: 16px;
-      opacity: 1;
-      visibility: visible;
-    }
+  &focus {
+    background-color: $black-color;
+    color: $white-color;
   }
 }
-
 .btn-hover {
   position: relative;
   overflow: hidden;
@@ -497,5 +475,39 @@ li.w-submenu {
       visibility: visible;
       opacity: 1;
     }
+  }
+}
+section {
+  padding: 60px 0;
+}
+.wrap-title {
+  text-align: center;
+  margin-bottom: 30px;
+  .section-title {
+    font-size: 24px;
+    font-weight: 600;
+    color: $black-color;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &:after,
+    &:before {
+      content: "";
+      display: inline-block;
+      width: 60px;
+      height: 2px;
+      background: #222;
+    }
+    span {
+      margin: 0 30px;
+    }
+  }
+  .sub-title {
+    font-size: 16px;
+    color: $dark-color;
+    font-family: Libre Baskerville;
+    font-style: italic;
+    margin-bottom: 0;
   }
 }
