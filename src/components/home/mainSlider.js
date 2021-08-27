@@ -22,7 +22,6 @@ const MainSlider = () => {
 
   return (
     <div className="home-slider-parallax">
-      {/* display books from the API */}
       {slider && (
         <Swiper
           effect="fade"

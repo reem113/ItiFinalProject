@@ -166,6 +166,15 @@ body {
   cursor: pointer;
 }
 
+.email-err,
+.psw-err {
+  color: red;
+  visibility: visible;
+  margin-bottom: 5%;
+  padding: 5%;
+  font-size: smaller;
+}
+
 .product-remove {
   color: #c50505;
   font-size: 25px;
