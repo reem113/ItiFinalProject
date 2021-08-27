@@ -5,7 +5,8 @@ class Error extends React.Component {
   render() {
     return (
       <div className="error-block text-center">
-        <h3>Not found content</h3>
+        <h3>Error</h3>
+        <p></p>
         <Link className="btn btn-primary" to="/">
           Back to Home
         </Link>
