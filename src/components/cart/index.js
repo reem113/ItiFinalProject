@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Counter from "../counter";
 import { AiFillCloseCircle } from "react-icons/ai";
+import BreadCrumb from "../breadcrumb";
 
 const ShoppingCart = () => {
   const [cart, setCart] = useState(null);
@@ -62,86 +63,93 @@ const ShoppingCart = () => {
   }, [cartChange]);
 
   return (
-    <section className="cart_wrapper">
-      {cart?.length && (
-        <div className="container mt-5">
-          <div className="table-responsive">
-            <table className="table">
-              <thead>
-                <tr>
-                  <th scope="col">Remove</th>
-                  <th scope="col">Product Image</th>
-                  <th scope="col">Product Name</th>
-                  <th scope="col">Price</th>
-                  <th scope="col">Quantity</th>
-                  <th scope="col">SubTotal</th>
-                </tr>
-              </thead>
-              <tbody>
-                {cart.map((product, index, arr) => {
-                  return (
-                    <tr key={index}>
-                      <td>
-                        <div
-                          className="product-remove"
-                          onClick={() => removeCartProduct(product.product._id)}
-                        >
-                          <AiFillCloseCircle />
-                        </div>
-                      </td>
-                      <td>
-                        <div className="table-product-view">
-                          <img
-                            src={product.product.images[0]}
-                            alt="product name"
-                          />
-                        </div>
-                      </td>
-                      <td>
-                        <span className="product_name">
-                          {product.product.name}
-                        </span>
-                      </td>
-                      <td>
-                        <div>{product.product.price} $</div>
-                      </td>
-                      <td>
-                        <div>
-                          <Counter
-                            product={product}
-                            cartItemId={product.product._id}
-                            changeProductQuantity={changeProductQuantity}
-                          />
-                        </div>
-                      </td>
-                      <td>
-                        <span>${product.product.price * product.quantity}</span>
-                      </td>
-                    </tr>
-                  );
-                })}
-              </tbody>
-            </table>
-          </div>
+    <>
+      <BreadCrumb />
+      <section className="cart_wrapper">
+        {cart?.length && (
+          <div className="container mt-5">
+            <div className="table-responsive">
+              <table className="table">
+                <thead>
+                  <tr>
+                    <th scope="col">Remove</th>
+                    <th scope="col">Product Image</th>
+                    <th scope="col">Product Name</th>
+                    <th scope="col">Price</th>
+                    <th scope="col">Quantity</th>
+                    <th scope="col">SubTotal</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {cart.map((product, index, arr) => {
+                    return (
+                      <tr key={index}>
+                        <td>
+                          <div
+                            className="product-remove"
+                            onClick={() =>
+                              removeCartProduct(product.product._id)
+                            }
+                          >
+                            <AiFillCloseCircle />
+                          </div>
+                        </td>
+                        <td>
+                          <div className="table-product-view">
+                            <img
+                              src={product.product.images[0]}
+                              alt="product name"
+                            />
+                          </div>
+                        </td>
+                        <td>
+                          <span className="product_name">
+                            {product.product.name}
+                          </span>
+                        </td>
+                        <td>
+                          <div>{product.product.price} $</div>
+                        </td>
+                        <td>
+                          <div>
+                            <Counter
+                              product={product}
+                              cartItemId={product.product._id}
+                              changeProductQuantity={changeProductQuantity}
+                            />
+                          </div>
+                        </td>
+                        <td>
+                          <span>
+                            ${product.product.price * product.quantity}
+                          </span>
+                        </td>
+                      </tr>
+                    );
+                  })}
+                </tbody>
+              </table>
+            </div>
 
-          <div className="form-container center">
-            <span className="form-label">Total</span>
-            <h2>
-              $
-              {cart.reduce((acc, cur) => {
-                return (acc += cur.quantity * cur.product.price);
-              }, 0)}
-            </h2>
+            <div className="form-container center">
+              <span className="form-label">Total</span>
+              <h2>
+                $
+                {cart.reduce((acc, cur) => {
+                  return (acc += cur.quantity * cur.product.price);
+                }, 0)}
+              </h2>
 
-            <div className="d-flex justify-content-center p-2">
-              <Link className="btn btn-main" to="/checkout">
-                To Checkout &gt;&gt;{" "}
-              </Link>
+              <div className="d-flex justify-content-center p-2">
+                <Link className="btn btn-main" to="/checkout">
+                  To Checkout &gt;&gt;{" "}
+                </Link>
+              </div>
             </div>
           </div>
-        </div>
-      )}
-    </section>
+        )}
+      </section>
+    </>
   );
 };
 

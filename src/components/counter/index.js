@@ -1,10 +1,6 @@
 import React from "react";
 import { AiOutlineMinus, AiOutlinePlus } from "react-icons/ai";
 class Counter extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
   incrementCounter = () => {
     this.setState((prevState) => ({
       counter: prevState.counter + 1,

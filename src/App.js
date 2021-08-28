@@ -16,6 +16,7 @@ import Notfound from "./components/error";
 import Login from "./components/login";
 import SignUp from "./components/signup";
 import Checkout from "./components/checkout";
+import Footer from "./components/home/footer";
 
 function App() {
   const [products, setProducts] = useState(null);
@@ -65,6 +66,7 @@ function App() {
         <Route path="/checkout" exact component={Checkout} />
         <Route path="*" exact component={Notfound} />
       </Switch>
+      <Footer />
     </Router>
   );
 }

@@ -3,8 +3,6 @@ import CollectionList from "./collectionsList";
 import MainSlider from "./mainSlider";
 import ProductsLis from "./productsList";
 import FullBanner from "./banner";
-import Footer from "./footer";
-
 
 const Home = ({ products }) => {
   return (
@@ -13,7 +11,6 @@ const Home = ({ products }) => {
       <ProductsLis products={products} />
       <FullBanner />
       <CollectionList />
-      <Footer />
     </div>
   );
 };
