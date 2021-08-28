@@ -1,7 +1,65 @@
+import React from "react";
 import { Link } from "react-router-dom";
 import { AiOutlineShoppingCart, AiOutlineHeart } from "react-icons/ai";
+import { store } from "react-notifications-component";
+
+let notification = {
+  title: "Wonderful!",
+  message: "Configurable",
+  type: "success",
+  insert: "top",
+  container: "center",
+  animationIn: ["animate__animated animate__fadeIn"], // `animate.css v4` classes
+  animationOut: ["animate__animated animate__fadeOut"], // `animate.css v4` classes
+};
 
 const Product = ({ product }) => {
+  // const [isAdded, setIsAdded] = useState(false);
+  const addToCart = async (productId, event) => {
+    const URL =
+      "http://localhost:8000/api/v1/users/610c965d7c24830ff49c91d9/cart";
+    try {
+      const response = await fetch(URL, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ product: productId }),
+      });
+      const data = await response.json();
+
+      event.target.classList.remove("btn-main");
+      event.target.setAttribute("disabled", true);
+
+      if (!data.success) {
+        store.addNotification({
+          ...notification,
+          title: "Error!",
+          message: "Product is already in cart!",
+          type: "danger",
+          container: "top-left",
+          dismiss: {
+            duration: 2000,
+          },
+        });
+        return;
+      }
+
+      store.addNotification({
+        ...notification,
+        container: "top-left",
+        dismiss: {
+          duration: 2000,
+        },
+      });
+
+      console.log("event", event);
+      console.log("data", data);
+      // setIsAdded();
+    } catch (error) {
+      console.log("error", error);
+    }
+  };
   return (
     <div className="product_item_wrap">
       <div className="product_img_wrap">
@@ -28,7 +86,12 @@ const Product = ({ product }) => {
         </div>
       </div>
       <div className="cart_action">
-        <button type="button" className="btn btn-main" title="Add to cart">
+        <button
+          type="button"
+          className="btn btn-main"
+          title="Add to cart"
+          onClick={(event) => addToCart(product._id, event)}
+        >
           <span className="icon">
             <AiOutlineShoppingCart />
           </span>

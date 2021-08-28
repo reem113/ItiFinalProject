@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import ReactNotification from "react-notifications-component";
+import "react-notifications-component/dist/theme.css";
 
 import Header from "./components/header";
 import Home from "./components/home";
@@ -15,7 +17,7 @@ import Login from "./components/login";
 import SignUp from "./components/signup";
 import Checkout from "./components/checkout";
 
-const App = () => {
+function App() {
   const [products, setProducts] = useState(null);
 
   useEffect(() => {
@@ -35,6 +37,7 @@ const App = () => {
 
   return (
     <Router>
+      <ReactNotification />
       <Header />
       <Switch>
         <Route
@@ -53,8 +56,10 @@ const App = () => {
           <ProductDetails />
         </Route>
         <Route path="/Account" exact component={Account} />
+        <Route path="/cart" exact>
+          <Cart />
+        </Route>
         <Route path="/favourite" exact component={Favourite} />
-        <Route path="/cart" exact component={Cart} />
         <Route path="/login" exact component={Login} />
         <Route path="/signup" exact component={SignUp} />
         <Route path="/checkout" exact component={Checkout} />
@@ -62,6 +67,6 @@ const App = () => {
       </Switch>
     </Router>
   );
-};
+}
 
 export default App;

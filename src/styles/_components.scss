@@ -10,7 +10,19 @@ body {
     display: inline-block;
   }
 }
-
+body {
+  padding-top: 116px !important;
+}
+.navbar {
+  &.fixed-top {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 99;
+    @extend %shadow;
+  }
+}
 .right-grid {
   display: flex;
   align-items: center;
@@ -49,12 +61,12 @@ body {
 
 /**/
 .sideMenuProducts {
-  position: absolute;
+  position: fixed;
   height: 100vh;
   width: 300px;
   right: -340px;
   top: 0;
-  z-index: 99;
+  z-index: 999;
   padding: 10px;
   background-color: $white-color;
   @extend %shadow;
@@ -185,11 +197,25 @@ body {
 .table-product-view {
   img {
     width: 120px;
-    height: 120px;
-    margin: 5px;
   }
   span {
     font-weight: bold;
+  }
+}
+.btn_action {
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
+  text-align: center;
+  display: inline-block;
+  border: 1px solid $control-color;
+  color: $black-color;
+  cursor: pointer;
+  @extend %ease;
+  &:hover,
+  &:focus {
+    background-color: $light-grey;
+    border: 1px solid $black-color;
   }
 }
 
@@ -455,9 +481,9 @@ th {
     justify-content: space-between;
 
     .btn {
-      font-size: 13px;
+      font-size: 12px;
       width: 100%;
-      padding: 8px;
+      padding: 8px 4px;
 
       .icon {
         display: inline-block;
@@ -596,6 +622,16 @@ th {
     }
   }
   span {
+    display: inline-block;
+  }
+}
+
+.cart_wrapper {
+  .product_name {
+    white-space: nowrap;
+    width: 200px;
+    overflow: hidden;
+    text-overflow: ellipsis;
     display: inline-block;
   }
 }
