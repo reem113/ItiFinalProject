@@ -17,7 +17,7 @@ const ProductsLis = (props) => {
         <div className="row">
           {products &&
             products.slice(0, 8).map((product, index) => (
-              <div className="col-lg-3 col-md-3 col-sm-6" key={index}>
+              <div className="col-xl-3 col-lg-4 col-md-4 col-sm-6" key={index}>
                 <Product product={product} />
               </div>
             ))}

@@ -7,7 +7,7 @@ class CollectionList extends React.Component {
       <section className="home-products collection-list">
         <div className="container">
           <div className="row">
-            <div className="col-md-4 col-12 left-grid">
+            <div className="col-xl-4 col-lg-4 col-md-4 col-12 left-grid">
               <h2>Get your Fashion style</h2>
               <p>
                 You’ll always be in fashion with our <br /> collection of
@@ -19,7 +19,7 @@ class CollectionList extends React.Component {
                 </Link>
               </div>
             </div>
-            <div className="col-xl-auto col-md-4 col-12">
+            <div className="col-xl-4 col-lg-4 col-md-4 col-12">
               <Link className="collection_item" to="">
                 <div className="collection_img">
                   <img
@@ -33,8 +33,7 @@ class CollectionList extends React.Component {
                 </div>
               </Link>
             </div>
-
-            <div className="col-xl-auto col-md-4 col-12">
+            <div className="col-xl-4 col-lg-4 col-md-4 col-12">
               <Link className="collection_item" to="/collections/mens">
                 <div className="collection_img">
                   <img

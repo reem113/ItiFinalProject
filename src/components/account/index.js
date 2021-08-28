@@ -10,14 +10,15 @@ class Account extends React.Component {
   render() {
     return (
       <div className="p-5">
-        <div class="d-flex justify-content-center p-2">
-          <Link className="btn btn-main" to="/login">Login</Link>
-        </div>
-        <div class="d-flex justify-content-center p-2">
-          <Link className="btn btn-main" to="/signup">Register</Link>
+        <div className="d-flex justify-content-center p-2">
+          <Link className="btn btn-main btn-200 me-3" to="/login">
+            Login
+          </Link>
+          <Link className="btn btn-border btn-200" to="/signup">
+            Register
+          </Link>
         </div>
       </div>
-
     );
   }
 }

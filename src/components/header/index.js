@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Logo from "../../images/logo_company.svg";
 
 import {
@@ -30,9 +30,22 @@ function Header(props) {
     toggleSidebar();
   };
 
+  const [cartCount, setCartCount] = useState(0);
+
+  useEffect(() => {
+    fetch("http://localhost:8000/api/v1/users/610c965d7c24830ff49c91d9/cart")
+      .then((res) => res.json())
+      .then((data) => {
+        setCartCount(
+          data.user.cart.reduce((acc, cur) => (acc += cur.quantity), 0),
+          console.log("cartCount", cartCount)
+        );
+      });
+  }, [cartCount]);
+
   return (
     <div>
-      <Navbar color="white" expand="md">
+      <Navbar color="white" expand="md" className="fixed-top">
         <div className="container">
           <NavbarBrand to="/">
             <img src={Logo} alt="company" />
@@ -81,7 +94,7 @@ function Header(props) {
               <li>
                 <span className="right-link" onClick={handleToggleSidebar}>
                   <AiOutlineShoppingCart />
-                  <span className="counter cart">0</span>
+                  <span className="counter cart">{cartCount}</span>
                 </span>
               </li>
             </ul>

@@ -1,44 +1,44 @@
 import React from "react";
-import { AiOutlineMinusCircle, AiOutlinePlusCircle } from "react-icons/ai";
+import { AiOutlineMinus, AiOutlinePlus } from "react-icons/ai";
 class Counter extends React.Component {
-    state = {
-        title: "Counter",
-        counter: 0
-    };
+  incrementCounter = () => {
+    this.setState((prevState) => ({
+      counter: prevState.counter + 1,
+    }));
+  };
 
-    incrementCounter = () => {
-        this.setState(prevState => ({
-            counter: prevState.counter + 1
-        }));
-    };
+  decrementCounter = () => {
+    this.setState((prevState) => ({
+      counter: prevState.counter - 1,
+    }));
+  };
 
-    decrementCounter = () => {
-        this.setState(prevState => ({
-            counter: prevState.counter - 1
-        }));
-    };
+  render() {
+    const { product, cartItemId, changeProductQuantity } = this.props;
 
-    render() {
-        return (
-            <section className="section">
-                <span className="container">
-                    <span>
-                        <span className="product-remove" onClick={this.incrementCounter}>
-                            <AiOutlinePlusCircle />
-                        </span>
+    return (
+      <section className="section">
+        <span className="container">
+          <span>
+            <span
+              className="btn_action"
+              onClick={() => changeProductQuantity(cartItemId, 1)}
+            >
+              <AiOutlinePlus />
+            </span>
 
-                        <span className="p-3">
-                            {this.state.counter}
-                        </span>
+            <span className="p-3">{product.quantity}</span>
 
-                        <span className="product-remove" onClick={this.decrementCounter}>
-                            <AiOutlineMinusCircle />
-                        </span>
-
-                    </span>
-                </span>
-            </section>
-        );
-    }
+            <span
+              className="btn_action"
+              onClick={() => changeProductQuantity(cartItemId, -1)}
+            >
+              <AiOutlineMinus />
+            </span>
+          </span>
+        </span>
+      </section>
+    );
+  }
 }
 export default Counter;

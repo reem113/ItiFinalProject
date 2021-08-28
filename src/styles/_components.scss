@@ -10,7 +10,19 @@ body {
     display: inline-block;
   }
 }
-
+body {
+  padding-top: 116px !important;
+}
+.navbar {
+  &.fixed-top {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 99;
+    @extend %shadow;
+  }
+}
 .right-grid {
   display: flex;
   align-items: center;
@@ -49,12 +61,12 @@ body {
 
 /**/
 .sideMenuProducts {
-  position: absolute;
+  position: fixed;
   height: 100vh;
   width: 300px;
   right: -340px;
   top: 0;
-  z-index: 99;
+  z-index: 999;
   padding: 10px;
   background-color: $white-color;
   @extend %shadow;
@@ -139,13 +151,13 @@ body {
 }
 
 .form-container {
-  width: 25%;
-  padding: 1%;
+  width: 500px;
+  padding: 20px;
   border-radius: $radius;
   margin: 20px auto;
   border: 1px solid $control-color;
   @extend %shadow;
-  background: -webkit-radial-gradient(circle, white, rgb(241, 241, 241));
+  // background: -webkit-radial-gradient(circle, white, rgb(241, 241, 241));
 }
 
 .form-text {
@@ -194,11 +206,25 @@ body {
 .table-product-view {
   img {
     width: 120px;
-    height: 120px;
-    margin: 5px;
   }
   span {
     font-weight: bold;
+  }
+}
+.btn_action {
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
+  text-align: center;
+  display: inline-block;
+  border: 1px solid $control-color;
+  color: $black-color;
+  cursor: pointer;
+  @extend %ease;
+  &:hover,
+  &:focus {
+    background-color: $light-grey;
+    border: 1px solid $black-color;
   }
 }
 
@@ -464,9 +490,9 @@ th {
     justify-content: space-between;
 
     .btn {
-      font-size: 13px;
+      font-size: 12px;
       width: 100%;
-      padding: 8px;
+      padding: 8px 4px;
 
       .icon {
         display: inline-block;
@@ -586,6 +612,8 @@ th {
   background-color: $black-color;
   color: $white-color;
   padding-bottom: 30px;
+  margin-top: auto;
+
   h4 {
     color: $white-color;
     font-size: 18px;
@@ -605,6 +633,38 @@ th {
     }
   }
   span {
+    display: inline-block;
+  }
+}
+
+//breadcrumbs_wrapper
+.breadcrumbs_wrapper {
+  background: url("../images/banner.jpg") no-repeat;
+  min-height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  .breadcrumb {
+    margin: 0;
+    justify-content: center;
+  }
+  .breadcrumb-item + .breadcrumb-item::before {
+    display: none;
+  }
+  .breadcrumb-item {
+    font-size: 16px;
+    &.active {
+      color: $black-color;
+    }
+  }
+}
+
+.cart_wrapper {
+  .product_name {
+    white-space: nowrap;
+    width: 200px;
+    overflow: hidden;
+    text-overflow: ellipsis;
     display: inline-block;
   }
 }

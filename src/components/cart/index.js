@@ -1,96 +1,156 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Counter from "../counter";
+import { AiFillCloseCircle } from "react-icons/ai";
+import BreadCrumb from "../breadcrumb";
 
-class ShoppingCart extends React.Component {
-  constructor(props) {
-    super(props);
+const ShoppingCart = () => {
+  const [cart, setCart] = useState(null);
+  const [cartChange, setCartChange] = useState(false);
+  // let isDeleted = false;
 
-    this.state = {};
-  }
-  render() {
-    return (
-      <>
-        <div className="table-responsive table-hover ">
-          <table className="table ">
-            <thead className="m-3">
-              <tr>
-                <th scope="col" className="table-content">
-                  Remove
-                </th>
-                <th scope="col" className="table-content">
-                  Product
-                </th>
-                <th scope="col" className="table-content">
-                  Price
-                </th>
-                <th scope="col" className="table-content">
-                  Quantity
-                </th>
-                <th scope="col" className="table-content">
-                  SubTotal
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr className="m-3">
-                <td className="table-content">
-                  <div className="product-remove">x</div>
-                </td>
-                <td className="table-content">
-                  <div className="table-product-view">
-                    <img src="/static/media/01.324b25fe.jpg" alt="product name" />
-                    <span>product name</span>
-                  </div>
-                </td>
-                <td className="table-content">
-                  <div>price</div>
-                </td>
-                <td className="table-content">
-                  <div><Counter /></div>
-                </td>
-                <td className="table-content">
-                  <span>$42.00</span>
-                </td>
-              </tr>
-              <tr className="m-3">
-                <td className="table-content">
-                  <div className=" table-content product-remove">x</div>
-                </td>
-                <td className="table-content">
-                  <div className="table-product-view">
-                    <img src="/static/media/01.324b25fe.jpg" alt="product name" />
-                    <span>product name</span>
-                  </div>
-                </td>
-                <td className="table-content">
-                  <div>price</div>
-                </td>
-                <td className="table-content">
-                  <div><Counter /></div>
-                </td>
-                <td className="table-content">
-                  <span>$42.00</span>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
+  const URL =
+    "http://localhost:8000/api/v1/users/610c965d7c24830ff49c91d9/cart";
 
-        <div className="form-container center">
-          <span className="form-label">Total</span>
-          <h2>$1200</h2>
+  const getAllCartProducts = async (URL) => {
+    try {
+      const response = await fetch(URL);
+      const data = await response.json();
+      setCart(data.user.cart);
+    } catch (error) {
+      console.log("error", error);
+    }
+  };
+  const removeCartProduct = async (productId) => {
+    const URL = `http://localhost:8000/api/v1/users/610c965d7c24830ff49c91d9/cart/${productId}`;
+    try {
+      const response = await fetch(URL, {
+        method: "DELETE",
+      });
+      const data = await response.json();
 
-          <div class="d-flex justify-content-center p-2">
-            <Link className="btn btn-main" to="/checkout">To Checkout &gt;&gt; </Link>
+      //setCart(data.user.cart);
+      console.log("data.user.cart", data.user.cart);
+      // isDeleted = !isDeleted;
+      setCartChange(!cartChange);
+    } catch (error) {
+      console.log("error", error);
+    }
+  };
+  const changeProductQuantity = async (productId, count) => {
+    const URL = `http://localhost:8000/api/v1/users/610c965d7c24830ff49c91d9/cart/${productId}`;
+    try {
+      const response = await fetch(URL, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ count }),
+      });
+      const data = await response.json();
+
+      //setCart(data.user.cart);
+      console.log("data.user.cart", data);
+      // isDeleted = !isDeleted;
+      setCartChange(!cartChange);
+    } catch (error) {
+      console.log("error", error);
+    }
+  };
+
+  useEffect(() => {
+    getAllCartProducts(URL);
+  }, [cartChange]);
+
+  return (
+    <>
+      <BreadCrumb />
+      <section className="cart_wrapper">
+        {cart?.length && (
+          <div className="container mt-5">
+            <div className="table-responsive">
+              <table className="table">
+                <thead>
+                  <tr>
+                    <th scope="col">Remove</th>
+                    <th scope="col">Product Image</th>
+                    <th scope="col">Product Name</th>
+                    <th scope="col">Price</th>
+                    <th scope="col">Quantity</th>
+                    <th scope="col">SubTotal</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {cart.map((product, index, arr) => {
+                    return (
+                      <tr key={index}>
+                        <td>
+                          <div
+                            className="product-remove"
+                            onClick={() =>
+                              removeCartProduct(product.product._id)
+                            }
+                          >
+                            <AiFillCloseCircle />
+                          </div>
+                        </td>
+                        <td>
+                          <div className="table-product-view">
+                            <img
+                              src={product.product.images[0]}
+                              alt="product name"
+                            />
+                          </div>
+                        </td>
+                        <td>
+                          <span className="product_name">
+                            {product.product.name}
+                          </span>
+                        </td>
+                        <td>
+                          <div>{product.product.price} $</div>
+                        </td>
+                        <td>
+                          <div>
+                            <Counter
+                              product={product}
+                              cartItemId={product.product._id}
+                              changeProductQuantity={changeProductQuantity}
+                            />
+                          </div>
+                        </td>
+                        <td>
+                          <span>
+                            ${product.product.price * product.quantity}
+                          </span>
+                        </td>
+                      </tr>
+                    );
+                  })}
+                </tbody>
+              </table>
+            </div>
+
+            <div className="form-container center">
+              <span className="form-label">Total</span>
+              <h2>
+                $
+                {cart.reduce((acc, cur) => {
+                  return (acc += cur.quantity * cur.product.price);
+                }, 0)}
+              </h2>
+
+              <div className="d-flex justify-content-center p-2">
+                <Link className="btn btn-main" to="/checkout">
+                  To Checkout &gt;&gt;{" "}
+                </Link>
+              </div>
+            </div>
           </div>
-
-
-        </div>
-      </>
-
-    );
-  }
-}
+        )}
+      </section>
+    </>
+  );
+};
 
 export default ShoppingCart;
