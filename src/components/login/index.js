@@ -1,9 +1,7 @@
 import React, { useState } from "react";
 import Logo from "../../images/logo_company.svg";
-import { Link, Redirect, useHistory } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import $ from "jquery";
-
-import { AiOutlineLock, AiOutlineUser } from "react-icons/ai";
 
 export default function Login() {
   const [email, setEmail] = useState();
@@ -62,7 +60,6 @@ export default function Login() {
           }}
         >
           <div className="email-div input-group">
-            {/* <span className="input-group-text p-4"><AiOutlineUser /></span> */}
             <input
               type="email"
               name="email"
@@ -109,7 +106,7 @@ export default function Login() {
           </div>
 
           <div className="d-flex justify-content-center ">
-            <input type="submit" value="Login" className="btn btn-main" />
+            <input type="submit" value="Login" className="btn btn-main btn-hover btn-200" />
           </div>
         </form>
         <div className="mt-4">
