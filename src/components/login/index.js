@@ -1,9 +1,7 @@
 import React, { useState } from "react";
 import Logo from "../../images/logo_company.svg";
-import { Link, Redirect, useHistory } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import $ from "jquery";
-
-import { AiOutlineLock, AiOutlineUser } from "react-icons/ai";
 
 export default function Login() {
   const [email, setEmail] = useState();
@@ -13,7 +11,7 @@ export default function Login() {
   function loginUser(e) {
     e.preventDefault();
 
-    fetch("http://localhost:3000/api/v1/users/login", {
+    fetch("http://localhost:8000/api/v1/users/login", {
       method: "POST", // or 'PUT'
       headers: {
         "Content-Type": "application/json",
@@ -26,16 +24,18 @@ export default function Login() {
         if (!data.success) {
           console.log(data.message);
           if (data.message == "This email doesn't exist!") {
-            // $(".email-err").text(data.message);
+            $(".psw-err").hide();
+            $(".email-err").text(data.message);
+            $(".email-err").show();
+
           } else if (
             data.message == "Authentication failed, password is incorrect!"
           ) {
             $(".email-err").hide();
             $(".psw-err").text(data.message);
+            $(".psw-err").show();
           }
-        } else {
-          $(".email-err").hide();
-          $(".psw-err").hide();
+        } else if (data.success) {
           localStorage.setItem("User Token", data.token);
           localStorage.setItem("Email", data.userEmail);
           localStorage.setItem("ID", data.userId);
@@ -60,7 +60,6 @@ export default function Login() {
           }}
         >
           <div className="email-div input-group">
-            {/* <span className="input-group-text p-4"><AiOutlineUser /></span> */}
             <input
               type="email"
               name="email"
@@ -76,7 +75,6 @@ export default function Login() {
           <span className="email-err"></span>
 
           <div className="psw-div input-group mt-3 mb-2">
-            {/* <span className="input-group-text p-4"><AiOutlineLock /></span> */}
             <input
               type="password"
               name="password"
@@ -108,7 +106,7 @@ export default function Login() {
           </div>
 
           <div className="d-flex justify-content-center ">
-            <input type="submit" value="Login" className="btn btn-main" />
+            <input type="submit" value="Login" className="btn btn-main btn-hover btn-200" />
           </div>
         </form>
         <div className="mt-4">
