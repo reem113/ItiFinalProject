@@ -9,7 +9,7 @@ import Account from "./components/account";
 import Product from "./components/product/index.js";
 import ProductDetails from "./components/product/productDetails";
 import Category from "./components/category";
-import Favourite from "./components/favourite";
+import Wishlist from "./components/wishlist";
 import Cart from "./components/cart";
 import About from "./components/about";
 import Notfound from "./components/error";
@@ -21,25 +21,121 @@ import Footer from "./components/home/footer";
 function App() {
   const [products, setProducts] = useState(null);
 
+  const [cartList, setCartList] = useState(null);
+  const [cartChange, setCartChange] = useState(false);
+
+  const [wishlist, setWishlist] = useState(null);
+  const [wishlistChange, setWishlistChange] = useState(false);
+
+  const removeCartProduct = async (productId) => {
+    const URL = `http://localhost:8000/api/v1/users/610c965d7c24830ff49c91d9/cart/${productId}`;
+    try {
+      const response = await fetch(URL, {
+        method: "DELETE",
+      });
+      const data = await response.json();
+      console.log("data.user.cart", data.user.cart);
+      setCartChange(!cartChange);
+    } catch (error) {
+      console.log("error", error);
+    }
+  };
+  const removeWishlistProduct = async (productId) => {
+    const URL = `http://localhost:8000/api/v1/users/610c965d7c24830ff49c91d9/wishlist/${productId}`;
+    try {
+      const response = await fetch(URL, {
+        method: "DELETE",
+      });
+      const WishlistProducts = await response.json();
+      console.log("data.user.wishlist", WishlistProducts.user.wishlist);
+      setWishlistChange(!wishlistChange);
+    } catch (error) {
+      console.log("error", error);
+    }
+  };
+  const changeProductQuantity = async (productId, count) => {
+    const URL = `http://localhost:8000/api/v1/users/610c965d7c24830ff49c91d9/cart/${productId}`;
+    try {
+      const response = await fetch(URL, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ count }),
+      });
+      const data = await response.json();
+      console.log("data.user.cart", data);
+      setCartChange(!cartChange);
+    } catch (error) {
+      console.log("error", error);
+    }
+  };
+
+  //ALL PRODUCTS
+  const getAllProducts = async () => {
+    try {
+      const response = await fetch("http://localhost:8000/api/v1/products/");
+      const allProducts = await response.json();
+      setProducts(allProducts.productList);
+      console.log("data ==>", allProducts.productList);
+    } catch (error) {
+      console.log("error", error);
+    }
+  };
+  //WISHLIST
+  const getWishlistProducts = async () => {
+    try {
+      const response = await fetch(
+        "http://localhost:8000/api/v1/users/610c965d7c24830ff49c91d9/wishlist"
+      );
+      const WishlistProducts = await response.json();
+      setWishlist(WishlistProducts.user.wishlist);
+      console.log(
+        "WishlistProducts ==>",
+        WishlistProducts.user.wishlist.length
+      );
+    } catch (error) {
+      console.log("error", error);
+    }
+  };
+  //CART
+  const getAllCartProducts = async () => {
+    try {
+      const response = await fetch(
+        "http://localhost:8000/api/v1/users/610c965d7c24830ff49c91d9/cart"
+      );
+      const cartProducts = await response.json();
+      setCartList(cartProducts.user.cart);
+      console.log("cartProducts ==>", cartProducts.user.cart.length);
+    } catch (error) {
+      console.log("error", error);
+    }
+  };
+
   useEffect(() => {
-    const URL = "http://localhost:8000/api/v1/products/";
-    const getAllProducts = async () => {
-      try {
-        const response = await fetch(URL);
-        const allProducts = await response.json();
-        setProducts(allProducts.productList);
-        console.log("data ==>", allProducts.productList);
-      } catch (error) {
-        console.log("error", error);
-      }
-    };
     getAllProducts();
   }, []);
 
+  useEffect(() => {
+    getAllCartProducts(URL);
+  }, [cartChange]);
+
+  useEffect(() => {
+    getWishlistProducts(URL);
+  }, [wishlistChange]);
+
+  console.log("wishlist from app js ==> ", wishlist);
   return (
     <Router>
       <ReactNotification />
-      <Header />
+      <Header
+        cart={cartList}
+        onRemoveCartProduct={removeCartProduct}
+        wishlist={wishlist}
+      />
+      {/* <div render={(props) => <Header cartList={cartList} {...props} />} /> */}
+
+      {/* <Header /> */}
       <Switch>
         <Route
           path="/"
@@ -57,10 +153,29 @@ function App() {
           <ProductDetails />
         </Route>
         <Route path="/Account" exact component={Account} />
-        <Route path="/cart" exact>
-          <Cart />
-        </Route>
-        <Route path="/favourite" exact component={Favourite} />
+        <Route
+          path="/cart"
+          exact
+          component={(props) => (
+            <Cart
+              cartList={cartList}
+              onRemoveCartProduct={removeCartProduct}
+              onChangeProductQuantity={changeProductQuantity}
+              {...props}
+            />
+          )}
+        />
+        <Route
+          path="/wishlist"
+          exact
+          render={(props) => (
+            <Wishlist
+              wishlist={wishlist}
+              onRemoveWishlistProduct={removeWishlistProduct}
+              {...props}
+            />
+          )}
+        />
         <Route path="/login" exact component={Login} />
         <Route path="/signup" exact component={SignUp} />
         <Route path="/checkout" exact component={Checkout} />

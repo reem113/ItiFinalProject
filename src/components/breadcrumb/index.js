@@ -8,7 +8,6 @@ const BreadCrumb = ({ url }) => {
   return (
     <section className="breadcrumbs_wrapper banner_bg">
       <div className="container">
-        {/* <h6>{activeLink}</h6> */}
         <nav aria-label="breadcrumb">
           <ol className="breadcrumb">
             <li className="breadcrumb-item">

@@ -27,7 +27,6 @@ export default function Login() {
             $(".psw-err").hide();
             $(".email-err").text(data.message);
             $(".email-err").show();
-
           } else if (
             data.message == "Authentication failed, password is incorrect!"
           ) {
@@ -106,7 +105,11 @@ export default function Login() {
           </div>
 
           <div className="d-flex justify-content-center ">
-            <input type="submit" value="Login" className="btn btn-main btn-hover btn-200" />
+            <input
+              type="submit"
+              value="Login"
+              className="btn btn-main btn-hover btn-200"
+            />
           </div>
         </form>
         <div className="mt-4">
