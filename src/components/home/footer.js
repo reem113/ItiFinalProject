@@ -35,7 +35,7 @@ class Footer extends React.Component {
               <h4>Information</h4>
               <hr />
               <div className="footer-links">
-                <Link className="link" to="">
+                <Link className="link" to="/about">
                   About Us
                 </Link>
                 <Link className="link" to="">
@@ -56,16 +56,16 @@ class Footer extends React.Component {
               <h4>My Account</h4>
               <hr />
               <div className="footer-links">
-                <Link className="link" to="">
+                <Link className="link" to="/Account">
                   My Account
                 </Link>
-                <Link className="link" to="">
+                <Link className="link" to="/login">
                   Login/Register
                 </Link>
-                <Link className="link" to="">
+                <Link className="link" to="/cart">
                   Cart
                 </Link>
-                <Link className="link" to="">
+                <Link className="link" to="/favourite">
                   Wishlist
                 </Link>
                 <Link className="link" to="">
