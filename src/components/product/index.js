@@ -5,12 +5,15 @@ import { store } from "react-notifications-component";
 
 let notification = {
   title: "Wonderful!",
-  message: "Configurable",
+  message: "Product Added Successfully",
   type: "success",
   insert: "top",
-  container: "center",
-  animationIn: ["animate__animated animate__fadeIn"], // `animate.css v4` classes
-  animationOut: ["animate__animated animate__fadeOut"], // `animate.css v4` classes
+  container: "top-right",
+  animationIn: ["animate__animated animate__fadeIn"],
+  animationOut: ["animate__animated animate__fadeOut"],
+  dismiss: {
+    duration: 2000,
+  },
 };
 
 const Product = ({ product }) => {
@@ -37,20 +40,50 @@ const Product = ({ product }) => {
           title: "Error!",
           message: "Product is already in cart!",
           type: "danger",
-          container: "top-left",
-          dismiss: {
-            duration: 2000,
-          },
         });
         return;
       }
 
       store.addNotification({
         ...notification,
-        container: "top-left",
-        dismiss: {
-          duration: 2000,
+      });
+
+      console.log("event", event);
+      console.log("data", data);
+      // setIsAdded();
+    } catch (error) {
+      console.log("error", error);
+    }
+  };
+  //
+  const addToFav = async (productId, event) => {
+    const URL =
+      "http://localhost:8000/api/v1/users/610c965d7c24830ff49c91d9/wishlist";
+    try {
+      const response = await fetch(URL, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
         },
+        body: JSON.stringify({ product: productId }),
+      });
+      const data = await response.json();
+
+      event.target.classList.add("btn-fav");
+      event.target.setAttribute("disabled", true);
+
+      if (!data.success) {
+        store.addNotification({
+          ...notification,
+          title: "Error!",
+          message: "Product is already in Favorite!",
+          type: "danger",
+        });
+        return;
+      }
+
+      store.addNotification({
+        ...notification,
       });
 
       console.log("event", event);
@@ -101,6 +134,7 @@ const Product = ({ product }) => {
           type="button"
           className="btn btn-border"
           title="Add to wishlist"
+          onClick={(event) => addToFav(product._id, event)}
         >
           <span className="icon">
             <AiOutlineHeart />

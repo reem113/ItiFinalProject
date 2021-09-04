@@ -178,14 +178,16 @@ input[type="radio"] ~ label:after {
 
 .btn-200 {
   padding: 16px 32px;
-  width: 200px;
+  min-width: 200px;
 }
 
 .btn-block {
   width: 100%;
   padding: 16px 32px;
 }
-
+.second-color {
+  color: $second-color;
+}
 a {
   &:hover,
   &:focus {

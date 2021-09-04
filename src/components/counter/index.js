@@ -14,30 +14,26 @@ class Counter extends React.Component {
   };
 
   render() {
-    const { product, cartItemId, changeProductQuantity } = this.props;
+    const { product, cartItemId, onChangeProductQuantity } = this.props;
 
     return (
-      <section className="section">
-        <span className="container">
-          <span>
-            <span
-              className="btn_action"
-              onClick={() => changeProductQuantity(cartItemId, 1)}
-            >
-              <AiOutlinePlus />
-            </span>
-
-            <span className="p-3">{product.quantity}</span>
-
-            <span
-              className="btn_action"
-              onClick={() => changeProductQuantity(cartItemId, -1)}
-            >
-              <AiOutlineMinus />
-            </span>
-          </span>
+      <span>
+        <span
+          className="btn_action"
+          onClick={() => onChangeProductQuantity(cartItemId, 1)}
+        >
+          <AiOutlinePlus />
         </span>
-      </section>
+
+        <span className="p-3">{product.quantity}</span>
+
+        <span
+          className="btn_action"
+          onClick={() => onChangeProductQuantity(cartItemId, -1)}
+        >
+          <AiOutlineMinus />
+        </span>
+      </span>
     );
   }
 }

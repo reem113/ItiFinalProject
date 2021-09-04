@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Logo from "../../images/logo_company.svg";
 
 import {
@@ -15,11 +15,11 @@ import {
   AiOutlineUser,
   AiOutlineHeart,
   AiOutlineShoppingCart,
+  AiFillCloseCircle,
 } from "react-icons/ai";
 
-import product01 from "../../images/products/01.jpg";
-
-function Header(props) {
+const Header = ({ cart, onRemoveCartProduct, wishlist }) => {
+  // console.log("cart from header", cart);
   const [isOpen, setIsOpen] = useState(false);
   const toggle = () => setIsOpen(!isOpen);
 
@@ -29,19 +29,6 @@ function Header(props) {
   const handleToggleSidebar = () => {
     toggleSidebar();
   };
-
-  const [cartCount, setCartCount] = useState(0);
-
-  useEffect(() => {
-    fetch("http://localhost:8000/api/v1/users/610c965d7c24830ff49c91d9/cart")
-      .then((res) => res.json())
-      .then((data) => {
-        setCartCount(
-          data.user.cart.reduce((acc, cur) => (acc += cur.quantity), 0),
-          console.log("cartCount", cartCount)
-        );
-      });
-  }, [cartCount]);
 
   return (
     <div>
@@ -86,47 +73,100 @@ function Header(props) {
                 </Link>
               </li>
               <li>
-                <Link className="right-link" to="/favourite">
-                  <AiOutlineHeart />
-                  <span className="counter fav">0</span>
+                <Link className="right-link" to="/wishlist">
+                  {wishlist && (
+                    <>
+                      <AiOutlineHeart />
+                      <span className="counter cart">{wishlist.length}</span>
+                    </>
+                  )}
                 </Link>
               </li>
               <li>
-                <span className="right-link" onClick={handleToggleSidebar}>
-                  <AiOutlineShoppingCart />
-                  <span className="counter cart">{cartCount}</span>
-                </span>
+                <Link className="right-link" to="/cart">
+                  {cart && (
+                    <>
+                      <AiOutlineShoppingCart />
+                      <span className="counter cart">{cart.length}</span>
+                    </>
+                  )}
+                </Link>
+                {/* <span className="right-link" onClick={handleToggleSidebar}>
+                  {cart && (
+                    <>
+                      <AiOutlineShoppingCart />
+                      <span className="counter cart">{cart.length}</span>
+                    </>
+                  )}
+                </span> */}
               </li>
             </ul>
           </Collapse>
         </div>
       </Navbar>
+
       <div
         className={isSidebarOpen ? "sideMenuProducts show" : "sideMenuProducts"}
       >
         <button type="button" className="close" onClick={handleToggleSidebar}>
           x
         </button>
-        <p>No products in the cart.</p>
-        <h3 className="mini-cart-header">Cart Items</h3>
-        <div className="card single-product-wrapper">
-          <div className="card-image">
-            <img src={product01} alt="product name" />
-          </div>
-          <div className="card-body product-body">
-            <h5 className="product-title">product name</h5>
-            <span className="quantity">
-              1 × <span className="Price-amount amount">$</span>42.00
-            </span>
-          </div>
-          <div className="remove-product">x</div>
-        </div>
-        <Link className="btn btn-main" to="/cart">
-          show cart
-        </Link>
+        {cart && (
+          <>
+            {cart.length > 0 ? (
+              <>
+                {cart.map((product, index, arr) => {
+                  return (
+                    <div className="card single-product-wrapper" key={index}>
+                      <div className="card-image">
+                        <img
+                          src={product.product.images[0]}
+                          alt="product name"
+                        />
+                      </div>
+                      <div className="card-body product-body">
+                        <h5 className="product-title">
+                          {product.product.name}
+                        </h5>
+                        <span className="quantity">
+                          Q: {product.quantity}
+                          <span className="Price-amount amount">
+                            {product.product.price}
+                          </span>
+                          $
+                        </span>
+                      </div>
+                      <div
+                        className="remove-product"
+                        onClick={() => onRemoveCartProduct(product.product._id)}
+                      >
+                        <AiFillCloseCircle />
+                      </div>
+                    </div>
+                  );
+                })}
+
+                <div className="d-block text-center">
+                  <Link
+                    className="btn btn-main btn-200"
+                    to="/cart"
+                    cart={cart}
+                    // removeCartProduct={removeCartProduct}
+                    // changeProductQuantity={changeProductQuantity}
+                    // {...props}
+                  >
+                    show cart
+                  </Link>
+                </div>
+              </>
+            ) : (
+              <p>No products in the cart.</p>
+            )}
+          </>
+        )}
       </div>
     </div>
   );
-}
+};
 
 export default Header;
