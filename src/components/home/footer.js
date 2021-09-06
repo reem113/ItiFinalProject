@@ -47,7 +47,7 @@ class Footer extends React.Component {
                 <Link className="link" to="">
                   Advertising
                 </Link>
-                <Link className="link" to="">
+                <Link className="link" to="/contactUs">
                   Contact Us
                 </Link>
               </div>
