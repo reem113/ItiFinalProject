@@ -1,22 +1,38 @@
-import React, { useEffect, useState } from "react";
+
+import React, { useState, useEffect } from "react";
+import { connect, useSelector, useDispatch } from "react-redux";
 import Counter from "../counter";
-import { AiFillCloseCircle } from "react-icons/ai";
-import BreadCrumb from "../breadcrumb";
 import axios from "axios";
-import { data } from "jquery";
 import { useHistory } from "react-router";
 
-const ShoppingCart = (props) => {
-  const { cartList, onRemoveCartProduct, onChangeProductQuantity } = props;
+import { AiFillCloseCircle } from "react-icons/ai";
+import BreadCrumb from "../breadcrumb";
+import { addToCart, removeFromCart } from "../../redux/actions/cartActions";
+import { formatCurrency } from "../../redux/util";
+
+
+const ShoppingCart = () => {
+  const cartList = localStorage.getItem("cartList")
+    ? JSON.parse(localStorage.getItem("cartList"))
+    : [];
+
 
   const [cart, setCart] = useState(null);
   const history = useHistory();
 
+  console.log("cartList", cartList);
 
 
+  // const { cartList } = useSelector((state) => state.products);
+  const dispatch = useDispatch();
+  const [totalPrice, setTotalPrice] = useState(0);
   useEffect(() => {
-    setCart(cartList);
-  }, []);
+    let price = 0;
+    cartList.forEach((item) => {
+      price += item.qty * item.price;
+    });
+    setTotalPrice(price);
+  }, [cartList, totalPrice, setTotalPrice]);
 
   const HandleRedirectPages = () => {
     const URL = `http://localhost:8000/api/v1/addresses/`
@@ -33,7 +49,14 @@ const ShoppingCart = (props) => {
     <>
       <BreadCrumb />
       <section className="cart_wrapper">
-        {cart?.length && (
+        {cartList.length === 0 ? (
+          "Cart is empty"
+        ) : (
+          <div className="alert alert-success text-center">
+            You have {cartList.length} items in the Cart. <hr />
+          </div>
+        )}
+        {cartList.length > 0 && (
           <div className="container mt-5">
             <div className="table-responsive">
               <table className="table table-bordered">
@@ -41,52 +64,48 @@ const ShoppingCart = (props) => {
                   <tr className="bg-grey">
                     <th scope="col">Product Image</th>
                     <th scope="col">Product Name</th>
-                    <th scope="col">Price</th>
                     <th scope="col">Quantity</th>
+                    <th scope="col">Price</th>
                     <th scope="col">SubTotal</th>
                     <th scope="col">Remove</th>
                   </tr>
                 </thead>
                 <tbody>
-                  {cart.map((product, index, arr) => {
+                  {cartList.map((item, index) => {
                     return (
                       <tr key={index}>
                         <td>
                           <div className="table-product-view">
-                            <img
-                              src={product.product.images[0]}
-                              alt="product name"
-                            />
+                            <img src={item.images[0]} alt="product name" />
                           </div>
                         </td>
                         <td>
-                          <span className="product_name">
-                            {product.product.name}
-                          </span>
+                          <span className="product_name">{item.name}</span>
                         </td>
                         <td>
                           <div>
                             <Counter
-                              product={product}
-                              cartItemId={product.product._id}
-                              onChangeProductQuantity={onChangeProductQuantity}
+                              item={item}
+                              cartItemId={item._id}
+                              handleAddToCart={addToCart}
+                              // onChangeProductQuantity={changeProductQuantity}
                             />
                           </div>
                         </td>
                         <td>
-                          <div>{product.product.price} $</div>
+                          <div>{item.price} $</div>
                         </td>
                         <td>
-                          <span>
-                            ${product.product.price * product.quantity}
-                          </span>
+                          {/* ${item.price * item.quantity} */}
+                          <span>{formatCurrency(totalPrice)}</span>
                         </td>
                         <td>
                           <div
                             className="product-remove"
-                            onClick={() =>
-                              onRemoveCartProduct(product.product._id)
-                            }
+                            // onClick={(e) =>
+                            //   removeFromCart(this.props.cartItems, item)
+                            // }
+                            onClick={() => dispatch(removeFromCart(item.id))}
                           >
                             <AiFillCloseCircle />
                           </div>
@@ -99,10 +118,10 @@ const ShoppingCart = (props) => {
                   <tr>
                     <th colSpan="2">Total</th>
                     <th colSpan="2">
-                      $
-                      {cart.reduce((acc, cur) => {
+                      {/* $
+                      {cartList.reduce((acc, cur) => {
                         return (acc += cur.quantity * cur.product.price);
-                      }, 0)}
+                      }, 0)} */}
                     </th>
                     <th colSpan="2">
                       <button className="btn btn-main btn-200" onClick={HandleRedirectPages}>
@@ -121,3 +140,10 @@ const ShoppingCart = (props) => {
 };
 
 export default ShoppingCart;
+
+// const mapStateToProps = (state) => ({
+//   cartList: state.cart.items,
+// });
+// export default connect(mapStateToProps, { addToCart, removeFromCart })(
+//   ShoppingCart
+// );

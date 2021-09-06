@@ -6,9 +6,19 @@ import App from "./App";
 
 import "./app.scss";
 
+// Redux
+import { Provider } from "react-redux";
+// import { PersistGate } from "redux-persist/integration/react";
+
+import store from "./redux/store";
+
 ReactDOM.render(
-  <BrowserRouter>
-    <App />
-  </BrowserRouter>,
+  <Provider store={store}>
+    <BrowserRouter>
+      {/* <PersistGate loading={null} persistor={persistor}> */}
+      <App />
+      {/* </PersistGate> */}
+    </BrowserRouter>
+  </Provider>,
   document.getElementById("root")
 );
