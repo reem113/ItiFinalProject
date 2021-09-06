@@ -1,0 +1,338 @@
+{
+  "productList": [
+    {
+      "description": "Chess Armory is a manufacturer and curator of fine chess sets and chess related products worldwide. We strive to promote chess to future generations of players. We carry chess sets for all occasions and players, whether you're looking for a high quality large wooden chess set to play with at home or a compact set to travel with. Because we are also chess players and advocates of the game we ensure the quality of all of our products as we also are continuously growing, learning, and evolving in our chess journey.",
+      "images": [
+        "http://localhost:8000/images/products/toys/01-1.jpg",
+        "http://localhost:8000/images/products/toys/01-2.jpg",
+        "http://localhost:8000/images/products/toys/01-3.jpg"
+      ],
+      "brand": "Chess Armory",
+      "reviews": [
+        " I love this chess set! - See all example photos of the chess set at the bottom."
+      ],
+      "rating": 4,
+      "isFeatured": true,
+      "_id": "611cb94724d5f0562cdb702e",
+      "name": "NEW Chess Armory Chess Set Box Compact Collapsible Folding Chess Set",
+      "shortDescription": "QUALITY - Wooden chess set with inlaid walnut STORAGE - Felted interior with straps for storing pieces",
+      "price": 94.99,
+      "category": {
+        "_id": "611a8ebc30ac3a5848ec903f",
+        "name": "Games",
+        "image": "http://localhost:8000/images/slider/home-slider04.jpg",
+        "title": "Shop toys and Games",
+        "description": "Let Your Fingers Do the Walking Through the Cell Phones.",
+        "__v": 0
+      },
+      "countInStock": 78,
+      "dateCreated": "2021-08-18T07:39:51.419Z",
+      "__v": 0
+    },
+    {
+      "description": "RECYCLABLE MATERIAL & VIVID COLOR STICKER - The Speed Cube is made of non-toxic ABS material and long lasting non-fading stickers; ideal for kids’ early cognitive development. EASY TURNING & SMOOTH PLAY - Improved anti-pop technology and structure for extremely fast and smooth Cornering,Durable Design; comes pre-lubricated and tensioned, MULTI-FACETED DEVELOPMENT - Can foster your kid's sense of space and enhance a child's memory, to release the working pressure of the adults, to help prevent a decline in memory of the elderly. This classic puzzle game will never go out of style and keep your kids off TV / Ipad.",
+      "images": [
+        "http://localhost:8000/images/products/toys/02-1-magic-cube.jpg",
+        "http://localhost:8000/images/products/toys/02-2.jpg"
+      ],
+      "brand": "Roxenda",
+      "reviews": [
+        " I love this chess set! - See all example photos of the chess set at the bottom."
+      ],
+      "rating": 5,
+      "isFeatured": false,
+      "_id": "611cbdc224d5f0562cdb703b",
+      "name": "Magic Cube Set of 3x3x3 Puzzle Cube",
+      "shortDescription": "RECYCLABLE MATERIAL & VIVID COLOR STICKER - The Speed Cube is made of non-toxic ABS material and long lasting non-fading stickers; ideal for kids’ early cognitive development.",
+      "price": 10.1,
+      "category": {
+        "_id": "611a8ebc30ac3a5848ec903f",
+        "name": "Games",
+        "image": "http://localhost:8000/images/slider/home-slider04.jpg",
+        "title": "Shop toys and Games",
+        "description": "Let Your Fingers Do the Walking Through the Cell Phones.",
+        "__v": 0
+      },
+      "countInStock": 3,
+      "dateCreated": "2021-08-18T07:58:58.029Z",
+      "__v": 0
+    },
+    {
+      "description": "Fun Learning Toys: This jigsaw puzzle set includes 36 pieces of different wooden shapes and 50 double-sided pattern cards in an Iron Box. Using imagination to make their own design without pattern cards, which is an excellent way to increase mental ability, Safe Play Toys & Ideal Gift: Our wooden pattern blocks are made of high quality natural solid wood, paint vibrant colors but no bad smell. Smooth edge design no rough for safely use, which can become a more popular early-learning educational tool and best gift for your toddlers.",
+      "images": [
+        "http://localhost:8000/images/products/toys/05-1.jpg",
+        "http://localhost:8000/images/products/toys/05-2.jpg",
+        "http://localhost:8000/images/products/toys/05-3.jpg",
+        "http://localhost:8000/images/products/toys/05-4.jpg"
+      ],
+      "brand": "AOJOYS",
+      "reviews": [
+        " I love this chess set! - See all example photos of the chess set at the bottom."
+      ],
+      "rating": 3,
+      "isFeatured": false,
+      "_id": "611cbe9724d5f0562cdb7040",
+      "name": "Wooden Pattern Blocks Toddler Puzzles, 36 Shape Pieces & 50 Animals Jigsaw Design Cards for Playing Games, Brain Teaser Sorting Stacking Game Early Educational Montessori Toy for Kids 3+ Years Old",
+      "shortDescription": "Fun Learning Toys: This jigsaw puzzle set includes 36 pieces of different wooden shapes and 50 double-sided pattern cards in an Iron Box. Using imagination to make their own design without pattern cards, which is an excellent way to increase mental ability.",
+      "price": 10.1,
+      "category": {
+        "_id": "611a8ebc30ac3a5848ec903f",
+        "name": "Games",
+        "image": "http://localhost:8000/images/slider/home-slider04.jpg",
+        "title": "Shop toys and Games",
+        "description": "Let Your Fingers Do the Walking Through the Cell Phones.",
+        "__v": 0
+      },
+      "countInStock": 9,
+      "dateCreated": "2021-08-18T08:02:31.708Z",
+      "__v": 0
+    },
+    {
+      "description": "UNO is the classic family card game that's easy to learn and so much fun to play!, In a race to deplete your hand, match one of your cards with the current card shown on top of the deck by either color or number. Strategize to defeat your competition with special action cards like Skips, Reverses, Draw Twos and color-changing Wild cards.",
+      "images": ["http://localhost:8000/images/products/toys/07.jpg"],
+      "brand": "Mattel",
+      "reviews": [
+        " I love this chess set! - See all example photos of the chess set at the bottom."
+      ],
+      "rating": 3,
+      "isFeatured": false,
+      "_id": "611cc0e824d5f0562cdb7043",
+      "name": "UNO Family Card Game, with 112 Cards",
+      "shortDescription": "UNO is the classic family card game that's easy to learn and so much fun to play!",
+      "price": 7,
+      "category": {
+        "_id": "611a8ebc30ac3a5848ec903f",
+        "name": "Games",
+        "image": "http://localhost:8000/images/slider/home-slider04.jpg",
+        "title": "Shop toys and Games",
+        "description": "Let Your Fingers Do the Walking Through the Cell Phones.",
+        "__v": 0
+      },
+      "countInStock": 1,
+      "dateCreated": "2021-08-18T08:12:24.523Z",
+      "__v": 0
+    },
+    {
+      "description": "Step away from the traditional desk and experience the home office Lap Desk. The 21. 1X 12 Work surface Fits most 15. 6 Laptops and includes a device ledge to secure your laptop in place. With the built-in mouse pad and phone slot, The home office Lap Desk is designed to make work feel effortless. The innovative Dual-bolster cushions not only create a stable work surface, but also reduce heat in your lap.",
+      "images": [
+        "http://localhost:8000/images/products/elctronics/01.jpg",
+        "http://localhost:8000/images/products/elctronics/01-2.jpg"
+      ],
+      "brand": "LapGear",
+      "reviews": [
+        " I really like this lap desk, as a phd student I'm on my computer A LOT. On weekends when I have work to do, it's nice to not have to get out of bed so it still feels like a lazy saturday."
+      ],
+      "rating": 3,
+      "isFeatured": false,
+      "_id": "6126272cdc180c1d50ee38d2",
+      "name": "LapGear Office Mouse",
+      "shortDescription": "LapGear Home Office Lap Desk with Device Ledge, Mouse Pad, and Phone Holder - White Marble - Fits Up To 15.6 Inch Laptops - style No. 91501",
+      "price": 29.94,
+      "category": {
+        "_id": "6119b3d61725cc48cce54b8b",
+        "name": "Electronics",
+        "image": "http://localhost:8000/images/slider/home-slider03.jpg",
+        "title": "Electronics",
+        "description": "We Bring Good Things To Life.",
+        "__v": 0
+      },
+      "countInStock": 11,
+      "dateCreated": "2021-08-25T11:19:08.350Z",
+      "__v": 0
+    },
+    {
+      "description": "Bluetooth stereo music playback: Supports connecting Bluetooth devices and supports dual-channel stereo high-fidelity music playback.Search for OPENEAR Duet on the smart device and click pairing, the white LED light flashes for 3 seconds after the connection is successful. Bluetooth call: supports Bluetooth connection for high-definition calls. Power indicator/alarm: Support iOS system headset power indicator and low battery alarm function.When the battery power is lower than 10% in the low power state, the headset prompts: battery low",
+      "images": [
+        "http://localhost:8000/images/categories/6119b3d61725cc48cce54b8b/Open-Ear-Headphones/02-jpg-1629901317413.jpeg"
+      ],
+      "brand": "Pinetree",
+      "reviews": [
+        "Battery died faster and faster after each use. Eventually it didn’t hold a charge for more than a min or two."
+      ],
+      "rating": 2,
+      "isFeatured": true,
+      "_id": "61265205577a4b1ee0dfc833",
+      "name": "Open Ear Headphones",
+      "shortDescription": "Open Ear Headphones for Running Cycling Sports Bluetooth 5.0 with Mic,Waterproof Ultra-Lightweight,Music, Hand-frees Phone Call Comfortable Wear Over Ear Earbuds (Black)",
+      "price": 1.5,
+      "category": {
+        "_id": "6119b3d61725cc48cce54b8b",
+        "name": "Electronics",
+        "image": "http://localhost:8000/images/slider/home-slider03.jpg",
+        "title": "Electronics",
+        "description": "We Bring Good Things To Life.",
+        "__v": 0
+      },
+      "countInStock": 30,
+      "dateCreated": "2021-08-25T14:21:57.421Z",
+      "__v": 0
+    },
+    {
+      "description": "Portable and Convenient Design Portable and Convenient Design The size of the E&jing USB 3.0 Flash Drive 1000GB is 58mm×19.5mm×10.8mm, and it makes it easy to slip into your pocket, briefcase, desk drawer, or travel bag. The end of the Thumb Drive has a loop that can easily be attached to your key chain or lanyard, using to help keep from losing, and for easy carrying.The size of the E&jing USB 3.0 Flash Drive 1000GB is 58mm×19.5mm×10.8mm, and it makes it easy to slip into your pocket, briefcase, desk drawer, or travel bag. The end of the Thumb Drive has a loop that can easily be attached to your key chain or lanyard, using to help keep from losing, and for easy carrying.",
+      "images": [
+        "http://localhost:8000/images/categories/6119b3d61725cc48cce54b8b/1TB-USB-Flash-Drive-3-0--E&jing-Flash-Memory-Stick-1000GB-with-Rotated-Design-1TB-USB-Flash-Drive-3-0--E&jing-Flash-Memory-Stick-1000GB-with-Rotated-Design/03-jpg-1629970622675.jpeg",
+        "http://localhost:8000/images/categories/6119b3d61725cc48cce54b8b/1TB-USB-Flash-Drive-3-0--E&jing-Flash-Memory-Stick-1000GB-with-Rotated-Design-1TB-USB-Flash-Drive-3-0--E&jing-Flash-Memory-Stick-1000GB-with-Rotated-Design/03-2-jpg-1629970622676.jpeg"
+      ],
+      "brand": "E&jingE&jing",
+      "reviews": [
+        "Liked the packaging, it fits on a key ring. But it hard failed after one week. Returning.Liked the packaging, it fits on a key ring. But it hard failed after one week. Returning."
+      ],
+      "rating": 4.6,
+      "isFeatured": false,
+      "_id": "612760be5eeb005b5c529d17",
+      "name": "1TB USB Flash Drive 3.0, E&jing Flash Memory Stick 1000GB with Rotated Design 1TB USB Flash Drive 3.0, E&jing Flash Memory Stick 1000GB with Rotated Design",
+      "shortDescription": "POWERFUL STORAGE FUNCTIONS: E&jing USB Flash Drive 1TB can transfer up to 204800 photos[10 megapixels]; 102400 MP3 audio files; 2560 minutes HD videos[1080P resolution] or 5120 minutes HD videos [720P resolution]POWERFUL STORAGE FUNCTIONS: E&jing USB Flash Drive 1TB can transfer up to 204800 photos[10 megapixels]; 102400 MP3 audio files; 2560 minutes HD videos[1080P resolution] or 5120 minutes HD videos [720P resolution]",
+      "price": 6.5,
+      "category": {
+        "_id": "6119b3d61725cc48cce54b8b",
+        "name": "Electronics",
+        "image": "http://localhost:8000/images/slider/home-slider03.jpg",
+        "title": "Electronics",
+        "description": "We Bring Good Things To Life.",
+        "__v": 0
+      },
+      "countInStock": 16,
+      "dateCreated": "2021-08-26T09:37:02.704Z",
+      "__v": 0
+    },
+    {
+      "description": "The 11pcs makeup brush set is a set of premium quality makeup brushes for Cosmetics beginners, but equally handy for everyday use and people who are makeup professionals. Covering all size and shape of brushes to create a variety of face makeup, the unique brush set can meet all your needs with different brushes. In addition, this brush set is ideally applicable to liquid, powder or cream cosmetics.",
+      "images": [
+        "http://localhost:8000/images/categories/6119a3f31725cc48cce54b81/Makeup-Brush-Set-11Pcs-Bamboo/01-jpg-1629971045513.jpeg",
+        "http://localhost:8000/images/categories/6119a3f31725cc48cce54b81/Makeup-Brush-Set-11Pcs-Bamboo/02-jpg-1629971045515.jpeg",
+        "http://localhost:8000/images/categories/6119a3f31725cc48cce54b81/Makeup-Brush-Set-11Pcs-Bamboo/05-jpg-1629971045516.jpeg"
+      ],
+      "brand": "BS-MALL",
+      "reviews": [
+        "This brushes are very good quality, especially for the price range"
+      ],
+      "rating": 4,
+      "isFeatured": false,
+      "_id": "612762655eeb005b5c529d20",
+      "name": "Makeup Brush Set 11Pcs Bamboo",
+      "shortDescription": "BS-MALL Makeup Brush Set 11Pcs Bamboo Synthetic Kabuki Brush Set Foundation Powder Blending Concealer Eye shadows Blush Cosmetics Brushes with Organizer Bag & Makeup Sponge",
+      "price": 12,
+      "category": {
+        "_id": "6119a3f31725cc48cce54b81",
+        "name": "Makeup",
+        "image": "http://localhost:8000/images/slider/home-slider02.jpg",
+        "title": "Makeup",
+        "description": "Be Forever Young, and Shine like a pearl.",
+        "__v": 0
+      },
+      "countInStock": 50,
+      "dateCreated": "2021-08-26T09:44:05.517Z",
+      "__v": 0
+    },
+    {
+      "description": "A magically iridescent eyeshadow palette contains professional cool and warm-toned pigments and shades. With different textures: soft smooth mattes, shimmery pressed pearl and dazzling metallic glitters. This richly toned palette features versatile shades that can be blended and layered to create endless amounts of looks.",
+      "images": [
+        "http://localhost:8000/images/categories/6119a3f31725cc48cce54b81/Eyeshadow-Pallet-Long-Lasting-Blendable-Natural-Colors/03-jpg-1629971232491.jpeg",
+        "http://localhost:8000/images/categories/6119a3f31725cc48cce54b81/Eyeshadow-Pallet-Long-Lasting-Blendable-Natural-Colors/04-jpg-1629971232491.jpeg"
+      ],
+      "brand": "Prism Makeup",
+      "reviews": [
+        "This brushes are very good quality, especially for the price range"
+      ],
+      "rating": 4,
+      "isFeatured": true,
+      "_id": "612763205eeb005b5c529d23",
+      "name": "Eyeshadow Pallet Long Lasting Blendable Natural Colors",
+      "shortDescription": "Highly Pigmented Eye Makeup Palette , Matte Shimmer Metallic Eyeshadow Pallet Long Lasting Blendable Natural Colors Make Up Eye Shadows Cosmetics Gift Kit",
+      "price": 200,
+      "category": {
+        "_id": "6119a3f31725cc48cce54b81",
+        "name": "Makeup",
+        "image": "http://localhost:8000/images/slider/home-slider02.jpg",
+        "title": "Makeup",
+        "description": "Be Forever Young, and Shine like a pearl.",
+        "__v": 0
+      },
+      "countInStock": 10,
+      "dateCreated": "2021-08-26T09:47:12.493Z",
+      "__v": 0
+    },
+    {
+      "description": "6 Colors Velvet Liquid Lip Stick Set, full-size lip gloss of the most popular colors. Charming matte, long-lasting and waterproof, Not stick cup, do not fade.  The Matte Liquid Lipstick has high-intensity pigment for an instant bold matte lip. The extremely long-wearing lipstick contains moisturizing ingredients for a comfortable, emollient and silky feel that does not dry your lips out.  The Matte Liquid Lipstick has high-intensity pigment for an instant bold matte lip. The extremely long-wearing lipstick contains moisturizing ingredients for a comfortable, emollient and silky feel that does not dry your lips out.",
+      "images": [
+        "http://localhost:8000/images/categories/6119a3f31725cc48cce54b81/Eyeshadow-Pallet-Long-Lasting-Blendable-Natural-Colors/08-jpg-1629971456735.jpeg",
+        "http://localhost:8000/images/categories/6119a3f31725cc48cce54b81/Eyeshadow-Pallet-Long-Lasting-Blendable-Natural-Colors/06-jpg-1629971456737.jpeg"
+      ],
+      "brand": "BestLand",
+      "reviews": [
+        "This brushes are very good quality, especially for the price range"
+      ],
+      "rating": 3.5,
+      "isFeatured": false,
+      "_id": "612764005eeb005b5c529d29",
+      "name": "Eyeshadow Pallet Long Lasting Blendable Natural Colors",
+      "shortDescription": "6Pcs Matte Liquid Lipstick Makeup Set, Matte liquid Long-Lasting Wear Non-Stick Cup Not Fade Waterproof Lip Gloss",
+      "price": 200,
+      "category": {
+        "_id": "6119a3f31725cc48cce54b81",
+        "name": "Makeup",
+        "image": "http://localhost:8000/images/slider/home-slider02.jpg",
+        "title": "Makeup",
+        "description": "Be Forever Young, and Shine like a pearl.",
+        "__v": 0
+      },
+      "countInStock": 50,
+      "dateCreated": "2021-08-26T09:50:56.741Z",
+      "__v": 0
+    },
+    {
+      "description": "Liquid Foundation: This totally customizable liquid foundation allows you to build demi matte, skin true buildable coverage with no ashiness, cakeyness, or greasiness using the easy to use pro dropper Lightweight and Long Lasting: This lightweight vegan formula gives skin a natural, healthy looking finish while minimizing imperfections and keeping skin looking hydrated with color that stays true and lasts up to 12 hours with no transfer",
+      "images": [
+        "http://localhost:8000/images/categories/6119a3f31725cc48cce54b81/NYX-PROFESSIONAL-MAKEUP/06-jpg-1629975512300.jpeg"
+      ],
+      "brand": "NYX PROFESSIONAL MAKEUP",
+      "reviews": [
+        "For best results we recommend using the foundation dropper to customize your coverage. Use the Total Control Foundation Brush. We hope you try it!"
+      ],
+      "rating": 4.9,
+      "isFeatured": false,
+      "_id": "612773d85eeb005b5c529d36",
+      "name": "NYX PROFESSIONAL MAKEUP",
+      "shortDescription": "Skin-true coverage - The lightweight formula gives skin a natural, healthy-looking finish, while minimizing the appearance of imperfections and keeping skin looking hydrated",
+      "price": 200,
+      "category": {
+        "_id": "6119a3f31725cc48cce54b81",
+        "name": "Makeup",
+        "image": "http://localhost:8000/images/slider/home-slider02.jpg",
+        "title": "Makeup",
+        "description": "Be Forever Young, and Shine like a pearl.",
+        "__v": 0
+      },
+      "countInStock": 150,
+      "dateCreated": "2021-08-26T10:58:32.316Z",
+      "__v": 0
+    },
+    {
+      "description": "Each compact contains three expertly coordinated shades that add natural-looking contour-so you can look like you were born with great cheekbones anytime!. Natural radiance made easy! Just brush on this lightweight, blendable powder blush. Each classic shade sweeps on cleanly, evenly, and comes in a beautiful mirrored compact, for a little lift, a natural glow, effortlessly-and anywhere. Dermatologically tested.",
+      "images": [
+        "http://localhost:8000/images/categories/6119a3f31725cc48cce54b81/COVERGIRL-Instant-Cheekbones-Contouring-Blush-Peach-/03-2-jpg-1629977067302.jpeg"
+      ],
+      "brand": "COVERGIRL",
+      "reviews": [
+        "For best results we recommend using the foundation dropper to customize your coverage. Use the Total Control Foundation Brush. We hope you try it!"
+      ],
+      "rating": 4.9,
+      "isFeatured": false,
+      "_id": "612779eb5eeb005b5c529d67",
+      "name": "COVERGIRL Instant Cheekbones Contouring Blush Peach ",
+      "shortDescription": "Natural radiance made easy! Just brush on this lightweight, blendable powder blush. Each classic shade sweeps on cleanly, evenly, and comes in a beautiful mirrored compact, for a little lift, a natural glow, effortlessly-and anywhere. Dermatologically tested.",
+      "price": 5.94,
+      "category": {
+        "_id": "6119a3f31725cc48cce54b81",
+        "name": "Makeup",
+        "image": "http://localhost:8000/images/slider/home-slider02.jpg",
+        "title": "Makeup",
+        "description": "Be Forever Young, and Shine like a pearl.",
+        "__v": 0
+      },
+      "countInStock": 5,
+      "dateCreated": "2021-08-26T11:24:27.317Z",
+      "__v": 0
+    }
+  ]
+}

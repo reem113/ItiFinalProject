@@ -1,14 +1,14 @@
 import React from "react";
 import CollectionList from "./collectionsList";
 import MainSlider from "./mainSlider";
-import ProductsLis from "./productsList";
+import ProductsLis from "../product/productsList";
 import FullBanner from "./banner";
 
-const Home = ({ products }) => {
+const Home = () => {
   return (
     <div className="main-wrapper">
       <MainSlider />
-      <ProductsLis products={products} />
+      <ProductsLis />
       <FullBanner />
       <CollectionList />
     </div>
