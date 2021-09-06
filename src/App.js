@@ -18,11 +18,14 @@ import Login from "./components/login";
 import SignUp from "./components/signup";
 import Checkout from "./components/checkout";
 import Footer from "./components/home/footer";
+import Profile from "./components/profile";
 import PlaceOrder from "./components/placeOrder";
 
 function App() {
   const id = localStorage.getItem("ID")
   const [products, setProducts] = useState(null);
+
+  const [token, setToken] = useState();
 
   const [cartList, setCartList] = useState(null);
   const [cartChange, setCartChange] = useState(false);
@@ -132,6 +135,8 @@ function App() {
     <Router>
       <ReactNotification />
       <Header
+        token={token}
+        setToken={setToken}
         cart={cartList}
         onRemoveCartProduct={removeCartProduct}
         wishlist={wishlist}
@@ -148,6 +153,7 @@ function App() {
         <Route path="/category" exact component={Category} />
         <Route path="/placeOrder" exact component={PlaceOrder} />
         <Route path="/contactus" exact component={ContactUs} />
+        <Route path="/profile" exact component={Profile} />
         <Route path="/about" exact component={About} />
         <Route
           path="/product"
@@ -181,7 +187,9 @@ function App() {
             />
           )}
         />
-        <Route path="/login" exact component={Login} />
+        <Route path="/login" exact>
+          <Login setToken={setToken} />
+        </Route>
         <Route path="/signup" exact component={SignUp} />
         <Route path="/checkout" exact component={Checkout} />
         <Route path="*" exact component={Notfound} />

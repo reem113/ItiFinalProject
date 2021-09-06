@@ -3,7 +3,6 @@ import Counter from "../counter";
 import { AiFillCloseCircle } from "react-icons/ai";
 import BreadCrumb from "../breadcrumb";
 import axios from "axios";
-import { data } from "jquery";
 import { useHistory } from "react-router";
 
 const ShoppingCart = (props) => {

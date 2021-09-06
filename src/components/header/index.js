@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import Logo from "../../images/logo_company.svg";
+import { useHistory } from "react-router";
+
 
 import {
   Collapse,
@@ -18,8 +20,11 @@ import {
   AiFillCloseCircle,
 } from "react-icons/ai";
 
-const Header = ({ cart, onRemoveCartProduct, wishlist }) => {
+const Header = ({ cart, onRemoveCartProduct, wishlist, token, setToken }) => {
   // console.log("cart from header", cart);
+
+  const history = useHistory();
+
   const [isOpen, setIsOpen] = useState(false);
   const toggle = () => setIsOpen(!isOpen);
 
@@ -29,6 +34,20 @@ const Header = ({ cart, onRemoveCartProduct, wishlist }) => {
   const handleToggleSidebar = () => {
     toggleSidebar();
   };
+
+  console.log("token", token);
+
+  const handleUserButton = () => {
+    (token) ? history.push("/profile") : history.push("/account");
+  }
+
+  const handleLogout = () => {
+    localStorage.removeItem("User Token");
+    localStorage.removeItem("ID");
+    localStorage.removeItem("Email");
+    setToken(null);
+    history.push("/account")
+  }
 
   return (
     <div>
@@ -60,6 +79,7 @@ const Header = ({ cart, onRemoveCartProduct, wishlist }) => {
                   </li>
                 </ul>
               </NavItem>
+
               <NavItem>
                 <Link className="nav-link" to="/about">
                   About
@@ -68,13 +88,14 @@ const Header = ({ cart, onRemoveCartProduct, wishlist }) => {
             </Nav>
             <ul className="right-grid">
               <li>
-                <Link className="right-link" to="/account">
-                  <AiOutlineUser />
-                </Link>
+                {
+                  <span className="right-link" onClick={handleUserButton}>
+                    <AiOutlineUser />
+                  </span>}
               </li>
               <li>
                 <Link className="right-link" to="/wishlist">
-                  {wishlist && (
+                  {wishlist && token && (
                     <>
                       <AiOutlineHeart />
                       <span className="counter cart">{wishlist.length}</span>
@@ -84,13 +105,18 @@ const Header = ({ cart, onRemoveCartProduct, wishlist }) => {
               </li>
               <li>
                 <Link className="right-link" to="/cart">
-                  {cart && (
+                  {cart && token && (
                     <>
                       <AiOutlineShoppingCart />
                       <span className="counter cart">{cart.length}</span>
                     </>
                   )}
                 </Link>
+                {token &&
+                  <span className="right-link second-color" >
+                    <span className="logout" onClick={handleLogout}>Logout</span>
+                  </span>
+                }
                 {/* <span className="right-link" onClick={handleToggleSidebar}>
                   {cart && (
                     <>
@@ -103,7 +129,7 @@ const Header = ({ cart, onRemoveCartProduct, wishlist }) => {
             </ul>
           </Collapse>
         </div>
-      </Navbar>
+      </Navbar >
 
       <div
         className={isSidebarOpen ? "sideMenuProducts show" : "sideMenuProducts"}
@@ -151,9 +177,9 @@ const Header = ({ cart, onRemoveCartProduct, wishlist }) => {
                     className="btn btn-main btn-200"
                     to="/cart"
                     cart={cart}
-                    // removeCartProduct={removeCartProduct}
-                    // changeProductQuantity={changeProductQuantity}
-                    // {...props}
+                  // removeCartProduct={removeCartProduct}
+                  // changeProductQuantity={changeProductQuantity}
+                  // {...props}
                   >
                     show cart
                   </Link>
@@ -165,7 +191,7 @@ const Header = ({ cart, onRemoveCartProduct, wishlist }) => {
           </>
         )}
       </div>
-    </div>
+    </div >
   );
 };
 
