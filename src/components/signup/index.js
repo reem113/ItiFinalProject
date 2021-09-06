@@ -61,6 +61,7 @@ export default function SignUp() {
               }}
               placeholder="Username"
               id="name"
+              required
             />
           </div>
 
@@ -78,6 +79,7 @@ export default function SignUp() {
               }}
               placeholder="01*********"
               id="phone"
+              required
             />
           </div>
 
@@ -95,6 +97,7 @@ export default function SignUp() {
               }}
               placeholder="example@domain.com"
               id="email"
+              required
             />
           </div>
 
@@ -112,6 +115,7 @@ export default function SignUp() {
               }}
               placeholder="Password "
               id="password"
+              required
             />
             <input
               type="password"
@@ -120,6 +124,7 @@ export default function SignUp() {
               onChange={handlePasswordConfirmation}
               placeholder="Confirm Password"
               id="passwordConfirmation"
+              required
             />
             <strong className="psw alert fade show p-1 m-2"></strong>
           </div>

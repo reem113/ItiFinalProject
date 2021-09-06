@@ -1,17 +1,33 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 import Counter from "../counter";
 import { AiFillCloseCircle } from "react-icons/ai";
 import BreadCrumb from "../breadcrumb";
+import axios from "axios";
+import { data } from "jquery";
+import { useHistory } from "react-router";
 
 const ShoppingCart = (props) => {
   const { cartList, onRemoveCartProduct, onChangeProductQuantity } = props;
 
   const [cart, setCart] = useState(null);
+  const history = useHistory();
+
+
 
   useEffect(() => {
     setCart(cartList);
   }, []);
+
+  const HandleRedirectPages = () => {
+    const URL = `http://localhost:8000/api/v1/addresses/`
+    const id = localStorage.getItem("ID");
+    axios.get(URL)
+      .then(res => {
+        const uservalue = res.data.addressList.find(address => address._userId === id);
+        (uservalue) ? history.push("/placeOrder") : history.push("/checkout");
+      })
+      .catch(err => { console.log(err); })
+  }
 
   return (
     <>
@@ -89,9 +105,9 @@ const ShoppingCart = (props) => {
                       }, 0)}
                     </th>
                     <th colSpan="2">
-                      <Link className="btn btn-main btn-200" to="/checkout">
+                      <button className="btn btn-main btn-200" onClick={HandleRedirectPages}>
                         To Checkout
-                      </Link>
+                      </button>
                     </th>
                   </tr>
                 </tfoot>

@@ -17,8 +17,10 @@ import Login from "./components/login";
 import SignUp from "./components/signup";
 import Checkout from "./components/checkout";
 import Footer from "./components/home/footer";
+import PlaceOrder from "./components/placeOrder";
 
 function App() {
+  const id = localStorage.getItem("ID")
   const [products, setProducts] = useState(null);
 
   const [cartList, setCartList] = useState(null);
@@ -143,6 +145,7 @@ function App() {
           render={(props) => <Home products={products} {...props} />}
         />
         <Route path="/category" exact component={Category} />
+        <Route path="/placeOrder" exact component={PlaceOrder} />
         <Route path="/about" exact component={About} />
         <Route
           path="/product"
