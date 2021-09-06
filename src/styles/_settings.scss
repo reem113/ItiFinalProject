@@ -35,3 +35,10 @@ $bar-spacing: 8px;
   -o-border-radius: 10px;
   border-radius: 10px;
 }
+
+%total {
+  font-weight: bold;
+  font-size: xx-large;
+  display: inline-block;
+  color: $second-color;
+}

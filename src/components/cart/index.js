@@ -1,18 +1,27 @@
+
 import React, { useState, useEffect } from "react";
 import { connect, useSelector, useDispatch } from "react-redux";
-import { Link } from "react-router-dom";
 import Counter from "../counter";
+import axios from "axios";
+import { useHistory } from "react-router";
+
 import { AiFillCloseCircle } from "react-icons/ai";
 import BreadCrumb from "../breadcrumb";
 import { addToCart, removeFromCart } from "../../redux/actions/cartActions";
 import { formatCurrency } from "../../redux/util";
+
 
 const ShoppingCart = () => {
   const cartList = localStorage.getItem("cartList")
     ? JSON.parse(localStorage.getItem("cartList"))
     : [];
 
+
+  const [cart, setCart] = useState(null);
+  const history = useHistory();
+
   console.log("cartList", cartList);
+
 
   // const { cartList } = useSelector((state) => state.products);
   const dispatch = useDispatch();
@@ -24,6 +33,17 @@ const ShoppingCart = () => {
     });
     setTotalPrice(price);
   }, [cartList, totalPrice, setTotalPrice]);
+
+  const HandleRedirectPages = () => {
+    const URL = `http://localhost:8000/api/v1/addresses/`
+    const id = localStorage.getItem("ID");
+    axios.get(URL)
+      .then(res => {
+        const uservalue = res.data.addressList.find(address => address._userId === id);
+        (uservalue) ? history.push("/placeOrder") : history.push("/checkout");
+      })
+      .catch(err => { console.log(err); })
+  }
 
   return (
     <>
@@ -104,9 +124,9 @@ const ShoppingCart = () => {
                       }, 0)} */}
                     </th>
                     <th colSpan="2">
-                      <Link className="btn btn-main btn-200" to="/checkout">
+                      <button className="btn btn-main btn-200" onClick={HandleRedirectPages}>
                         To Checkout
-                      </Link>
+                      </button>
                     </th>
                   </tr>
                 </tfoot>

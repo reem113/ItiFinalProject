@@ -10,6 +10,7 @@ import Product from "./components/product/index.js";
 import ProductDetails from "./components/product/productDetails";
 import Category from "./components/category";
 import Wishlist from "./components/wishlist";
+import ContactUs from "./components/contactUs";
 import Cart from "./components/cart";
 import About from "./components/about";
 import Notfound from "./components/error";
@@ -17,8 +18,10 @@ import Login from "./components/login";
 import SignUp from "./components/signup";
 import Checkout from "./components/checkout";
 import Footer from "./components/home/footer";
+import PlaceOrder from "./components/placeOrder";
 
 function App() {
+
   return (
     <Router>
       <ReactNotification />
@@ -26,6 +29,8 @@ function App() {
       <Switch>
         <Route path="/" exact component={Home} />
         <Route path="/category" exact component={Category} />
+        <Route path="/placeOrder" exact component={PlaceOrder} />
+        <Route path="/contactus" exact component={ContactUs} />
         <Route path="/about" exact component={About} />
         <Route path="/product" exact component={Product} />
         <Route path="/products/:id" exact component={ProductDetails} />
