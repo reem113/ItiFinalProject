@@ -48,7 +48,7 @@ const Header = (props) => {
     localStorage.removeItem("ID");
     localStorage.removeItem("Email");
     props.setToken(null);
-    history.push("/account")
+    history.push("/")
   }
 
   const cartList = localStorage.getItem("cartList")

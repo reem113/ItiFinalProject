@@ -1,9 +1,9 @@
 import { React, useState, useEffect } from "react";
 import axios from "axios";
-<<<<<<< HEAD
 import { useHistory } from "react-router";
 
-export default function Profile() {
+
+const Profile = () => {
     const history = useHistory();
     const id = localStorage.getItem("ID");
     const [userInfo, setUserInfo] = useState(null);
@@ -11,13 +11,6 @@ export default function Profile() {
     const handleButton = () => {
         history.push("/");
     }
-
-=======
-
-export default function Profile() {
-    const id = localStorage.getItem("ID");
-    const [userInfo, setUserInfo] = useState(null);
->>>>>>> 2189323e47a0ad68fae9815726faa297042cc046
     useEffect(() => {
         const getUserInfo = () => {
             const URL = `http://localhost:8000/api/v1/users/${id}`;
@@ -33,6 +26,7 @@ export default function Profile() {
         };
         getUserInfo();
     }, []);
+
     return (
         <>
             {userInfo && (
@@ -56,11 +50,7 @@ export default function Profile() {
                             <br /> {userInfo.address[0].country}
                         </div>
                         <div className="center">
-<<<<<<< HEAD
                             <button className="btn btn-main btn-hover btn-200" onClick={handleButton}>Back To Home</button>
-=======
-                            <button className="btn btn-main btn-hover btn-200">Back To Home</button>
->>>>>>> 2189323e47a0ad68fae9815726faa297042cc046
                         </div>
                     </div>
                 </div>
@@ -68,3 +58,5 @@ export default function Profile() {
         </>
     );
 }
+
+export default Profile;
