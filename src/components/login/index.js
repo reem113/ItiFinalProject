@@ -3,8 +3,7 @@ import Logo from "../../images/logo_company.svg";
 import { Link, useHistory } from "react-router-dom";
 import $ from "jquery";
 
-export default function Login({ setToken }) {
-
+export default function Login() {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
   const history = useHistory();
@@ -39,7 +38,6 @@ export default function Login({ setToken }) {
           localStorage.setItem("User Token", data.token);
           localStorage.setItem("Email", data.userEmail);
           localStorage.setItem("ID", data.userId);
-          setToken(data.token);
           history.push("/");
         }
       })
