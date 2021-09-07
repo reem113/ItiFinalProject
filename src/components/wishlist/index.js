@@ -1,46 +1,35 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
+import { connect, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
-
+import {
+  addToWishlist,
+  removeFromWishlist,
+} from "../../redux/actions/wishlistAction";
 import { AiFillCloseCircle } from "react-icons/ai";
 import BreadCrumb from "../breadcrumb";
 
-const Wishlist = () => {
-  const [wishlist, setWishlist] = useState(null);
-  const [wishlistChange, setWishlistChange] = useState(false);
-
-  const getWishlistProducts = async () => {
-    try {
-      const response = await fetch(
-        "http://localhost:8000/api/v1/users/610c965d7c24830ff49c91d9/wishlist"
-      );
-      const WishlistProducts = await response.json();
-      setWishlist(WishlistProducts.user.wishlist);
-    } catch (error) {}
-  };
-  const removeWishlistProduct = async (productId) => {
-    const URL = `http://localhost:8000/api/v1/users/610c965d7c24830ff49c91d9/wishlist/${productId}`;
-    try {
-      const response = await fetch(URL, {
-        method: "DELETE",
-      });
-      const WishlistProducts = await response.json();
-      setWishlistChange(!wishlistChange);
-    } catch (error) {}
-  };
-
-  useEffect(() => {
-    getWishlistProducts();
-  }, []);
-
-  useEffect(() => {
-    getWishlistProducts();
-  }, [wishlistChange]);
+const Wishlist = (props) => {
+  const wishlist = localStorage.getItem("wishlist")
+    ? JSON.parse(localStorage.getItem("wishlist"))
+    : [];
+  const dispatch = useDispatch();
 
   return (
     <>
       <BreadCrumb />
       <section className="cart_wrapper">
-        {wishlist?.length && (
+        <div className="cart-status">
+          {wishlist.length === 0 ? (
+            <span className="alert alert-danger text-center">
+              "Your Wishlist is empty"
+            </span>
+          ) : (
+            <span className="alert alert-success text-center">
+              You have {wishlist.length} items in the Wishlist.
+            </span>
+          )}
+        </div>
+        {wishlist.length > 0 && (
           <div className="container mt-5">
             <div className="table-responsive">
               <table className="table table-bordered">
@@ -53,31 +42,24 @@ const Wishlist = () => {
                   </tr>
                 </thead>
                 <tbody>
-                  {wishlist.map((product, index, arr) => {
+                  {wishlist.map((item, index) => {
                     return (
                       <tr key={index}>
                         <td>
                           <div className="table-product-view">
-                            <img
-                              src={product.product.images[0]}
-                              alt="product name"
-                            />
+                            <img src={item.images[0]} alt="product name" />
                           </div>
                         </td>
                         <td>
-                          <span className="product_name">
-                            {product.product.name}
-                          </span>
+                          <span className="product_name">{item.name}</span>
                         </td>
                         <td>
-                          <div>{product.product.price} $</div>
+                          <div>{item.price} $</div>
                         </td>
                         <td>
                           <div
                             className="product-remove"
-                            onClick={() =>
-                              removeWishlistProduct(product.product._id)
-                            }
+                            onClick={() => dispatch(removeFromWishlist(item))}
                           >
                             <AiFillCloseCircle />
                           </div>
@@ -104,4 +86,9 @@ const Wishlist = () => {
   );
 };
 
-export default Wishlist;
+const mapStateToProps = (state) => ({
+  wishlist: state.wishlist.wishlist,
+});
+export default connect(mapStateToProps, { addToWishlist, removeFromWishlist })(
+  Wishlist
+);

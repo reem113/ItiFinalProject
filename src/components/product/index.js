@@ -1,16 +1,14 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-
-import { addToCart } from "../../redux/actions/cartActions";
-
 import { formatCurrency } from "../../redux/util";
+import { addToCart } from "../../redux/actions/cartActions";
+import { addToWishlist } from "../../redux/actions/wishlistAction";
 
 import { Link } from "react-router-dom";
 import { AiOutlineShoppingCart, AiOutlineHeart } from "react-icons/ai";
 
 const Product = ({ product }) => {
   const dispatch = useDispatch();
-  // console.log("singleProduct", product);
 
   return (
     <div className="product_item_wrap">
@@ -38,7 +36,6 @@ const Product = ({ product }) => {
         </div>
         <div className="product-price-container">
           <span className="product-price  product-sale-price ">
-            {/* {util.formatCurrency(product.price)}$ */}
             {formatCurrency(product.price)}
           </span>
           <span className="product-regular-price">
@@ -62,7 +59,7 @@ const Product = ({ product }) => {
           type="button"
           className="btn btn-border"
           title="Add to wishlist"
-          // onClick={(event) => addToWishlist(product._id, event)}
+          onClick={() => dispatch(addToWishlist(product))}
         >
           <span className="icon">
             <AiOutlineHeart />

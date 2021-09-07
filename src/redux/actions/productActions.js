@@ -1,7 +1,7 @@
-import axios from "axios";
 import {
   FETCH_PRODUCTS,
   FILTER_PRODUCTS_BY_ISFEATURED,
+  FETCH_PRODUCT_DETAILS,
   // ORDER_PRODUCTS_BY_PRICE,
 } from "./types";
 
@@ -16,7 +16,6 @@ export const fetchProducts = () => (dispatch) => {
     )
     .then((data) => {
       dispatch({ type: FETCH_PRODUCTS, payload: data.productList });
-      // console.log("dispatch products", data.productList);
     });
 };
 
@@ -31,6 +30,17 @@ export const filterProducts = (products, isFeatured) => (dispatch) => {
           : products.filter((product) => product.isFeatured === true),
     },
   });
+};
+
+export const fetchProductDetails = (id) => (dispatch) => {
+  fetch(`http://localhost:8000/api/v1/products/${id}`)
+    .then((res) => res.json())
+    .catch((err) => {
+      console.log("error", err);
+    })
+    .then((data) => {
+      dispatch({ type: FETCH_PRODUCT_DETAILS, payload: data.productDetail });
+    });
 };
 
 // export const sortProducts = (items, sort) => (dispatch) => {

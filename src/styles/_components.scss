@@ -15,6 +15,7 @@ body {
 }
 .navbar {
   &.fixed-top {
+    z-index: 99;
     @extend %shadow;
   }
 }
@@ -64,16 +65,22 @@ body {
   z-index: 999;
   padding: 10px;
   background-color: $white-color;
+  padding-top: 80px;
   @extend %shadow;
   @extend %ease;
 
   &.show {
     right: 0;
+    display: flex;
+    flex-direction: column;
   }
 
   .mini-cart-header {
     font-size: 22px;
     color: $black-color;
+  }
+  .d-block.text-center {
+    margin-top: auto;
   }
 }
 
@@ -216,7 +223,8 @@ body {
   line-height: 30px;
   text-align: center;
   display: inline-block;
-  border: 1px solid $control-color;
+  border: 0;
+  border-right: 1px solid $control-color;
   color: $black-color;
   cursor: pointer;
   @extend %ease;
@@ -226,7 +234,21 @@ body {
     border: 1px solid $black-color;
   }
 }
+.counter-action {
+  display: flex;
+  align-items: center;
+  border: 1px solid $control-color;
+  display: inline-block;
+  height: 32px;
+  width: 70px;
 
+  .counter-num {
+    width: calc(100% - 30px);
+    background-color: $light-grey;
+    text-align: center;
+    display: inline-block;
+  }
+}
 td,
 th {
   vertical-align: middle;
@@ -287,7 +309,8 @@ tfoot {
   align-items: center;
   justify-content: center;
   color: $black-color;
-  background: $white-color;
+  background: $light-grey;
+  border: 1px solid $control-color;
   border-radius: 50%;
   overflow: hidden;
   text-align: center;
@@ -670,6 +693,7 @@ tfoot {
   .productSwiper {
     .swiper-slide {
       height: 320px;
+      border: 1px solid $control-color;
     }
   }
   .top-description {
@@ -708,5 +732,17 @@ tfoot {
     overflow: hidden;
     text-overflow: ellipsis;
     display: inline-block;
+  }
+}
+
+.cart-status {
+  width: 300px;
+  margin: 0px auto;
+  text-align: center;
+  display: block;
+  span {
+    display: inline-block;
+    width: 100%;
+    margin: 0;
   }
 }

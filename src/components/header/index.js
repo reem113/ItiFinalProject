@@ -19,8 +19,8 @@ import {
   AiFillCloseCircle,
 } from "react-icons/ai";
 
-import { addToCart } from "../../redux/actions/cartActions";
-// import { cartReducer } from "../../redux/reducers";
+import { removeFromCart } from "../../redux/actions/cartActions";
+import { formatCurrency } from "../../redux/util";
 
 const Header = (props) => {
   // // console.log("cart from header", cart);
@@ -34,21 +34,15 @@ const Header = (props) => {
     toggleSidebar();
   };
 
-  const { cart } = useSelector((state) => state);
-  console.log("cart in header", cart);
-  console.log("cartList length", cart.length);
+  const cartList = localStorage.getItem("cartList")
+    ? JSON.parse(localStorage.getItem("cartList"))
+    : [];
 
+  const wishlist = localStorage.getItem("wishlist")
+    ? JSON.parse(localStorage.getItem("wishlist"))
+    : [];
+  console.log("wishlist in header", wishlist);
   const dispatch = useDispatch();
-  // // console.log("cart length in header", cart.cartList.cartList.length);
-  // console.log("props", props);
-  const { cartList } = props;
-  console.log("cartlist props", cartList);
-  // const [cartCounter, setCartCounter] = useState(0);
-  // useEffect(() => {
-  //   dispatch(addToCart());
-  // }, [setCartCounter]);
-  // console.log("cartCounter", cartCounter);
-
   return (
     <div>
       <Navbar color="white" expand="md" className="fixed-top">
@@ -93,32 +87,85 @@ const Header = (props) => {
               </li>
               <li>
                 <Link className="right-link" to="/wishlist">
-                  {/* {wishlist && ( */}
-                  <>
-                    <AiOutlineHeart />
-                    <span className="counter cart">wishlist.length</span>
-                  </>
-                  {/* )} */}
+                  <AiOutlineHeart />
+                  <span className="counter cart">
+                    {wishlist.length === 0 ? "0" : wishlist.length}
+                  </span>
                 </Link>
               </li>
               <li>
-                <Link className="right-link" to="/cart">
+                <span className="right-link" onClick={handleToggleSidebar}>
                   <AiOutlineShoppingCart />
                   <span className="counter cart">
-                    {cart.length === 0 ? "0" : cart.length}
+                    {cartList.length === 0 ? "0" : cartList.length}
                   </span>
-                </Link>
+                </span>
               </li>
             </ul>
           </Collapse>
         </div>
       </Navbar>
+      <div
+        className={isSidebarOpen ? "sideMenuProducts show" : "sideMenuProducts"}
+      >
+        <button type="button" className="close" onClick={handleToggleSidebar}>
+          x
+        </button>
+        {cartList.length === 0 ? (
+          <span className="alert alert-danger text-center">
+            "Your Cart is empty"
+          </span>
+        ) : (
+          <>
+            {cartList.map((product, index) => {
+              return (
+                <div className="card single-product-wrapper" key={index}>
+                  <div className="card-image">
+                    <img src={product.images[0]} alt="product name" />
+                  </div>
+                  <div className="card-body product-body">
+                    <h5 className="product-title">{product.name}</h5>
+                    <span className="quantity">
+                      Q: {product.count} *
+                      <span className="Price-amount amount">
+                        {formatCurrency(product.price)}
+                      </span>
+                    </span>
+                  </div>
+                  <div
+                    className="remove-product"
+                    onClick={() => dispatch(removeFromCart(product))}
+                  >
+                    <AiFillCloseCircle />
+                  </div>
+                </div>
+              );
+            })}
+
+            <div className="d-block text-center">
+              <div className="btn btn-border btn-200 mb-3">
+                Total :
+                <span>
+                  {formatCurrency(
+                    cartList.reduce((acc, cur) => {
+                      return (acc += cur.count * cur.price);
+                    }, 0)
+                  )}
+                </span>
+              </div>
+              <Link className="btn btn-main btn-200" to="/cart">
+                show cart
+              </Link>
+            </div>
+          </>
+        )}
+      </div>
     </div>
   );
 };
 
-// export default Header;
 const mapStateToProps = (state) => ({
   cartList: state.cart,
+  wishlist: state.wishlist,
 });
-export default connect(mapStateToProps, { addToCart })(Header);
+export default connect(mapStateToProps)(Header);

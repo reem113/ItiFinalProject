@@ -18,9 +18,6 @@ const ProductsList = () => {
     (product) => product.isFeatured === true
   );
 
-  // render() {
-  // console.log("featuredProducts from redux", products);
-  // console.log("featuredProducts from redux", products.items.length);
   return (
     <section className="bg-grey">
       <div className="container">
@@ -47,10 +44,7 @@ const ProductsList = () => {
         </div>
       </div>
     </section>
-
-    // )}
   );
-  // }
 };
 
 export default ProductsList;

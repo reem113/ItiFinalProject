@@ -5,7 +5,10 @@ import rootReducers from "./reducers";
 const cartList = localStorage.getItem("cartList")
   ? JSON.parse(localStorage.getItem("cartList"))
   : [];
-const initialState = { cart: cartList };
+const wishlist = localStorage.getItem("wishlist")
+  ? JSON.parse(localStorage.getItem("wishlist"))
+  : [];
+const initialState = { cartList, wishlist };
 const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const store = createStore(
   rootReducers,

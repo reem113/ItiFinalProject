@@ -1,42 +1,19 @@
 import React from "react";
-import { AiOutlineMinus, AiOutlinePlus } from "react-icons/ai";
-class Counter extends React.Component {
-  // incrementCounter = () => {
-  //   this.setState((prevState) => ({
-  //     counter: prevState.counter + 1,
-  //   }));
-  // };
+import { AiOutlinePlus } from "react-icons/ai";
+import { useDispatch } from "react-redux";
+import { addToCart } from "./../../redux/actions/cartActions";
 
-  // decrementCounter = () => {
-  //   this.setState((prevState) => ({
-  //     counter: prevState.counter - 1,
-  //   }));
-  // };
+const Counter = (props, { handleAddToCart }) => {
+  const { item } = props;
+  const dispatch = useDispatch();
 
-  render() {
-    const { item, cartItemId, onChangeProductQuantity, handleAddToCart } =
-      this.props;
-    console.log("ppp", item);
-
-    return (
-      <span>
-        <span
-          className="btn_action"
-          onClick={() => onChangeProductQuantity(cartItemId, 1)}
-        >
-          <AiOutlinePlus />
-        </span>
-
-        <span className="p-3">{item.count}</span>
-
-        <span
-          className="btn_action"
-          onClick={() => onChangeProductQuantity(cartItemId, -1)}
-        >
-          <AiOutlineMinus />
-        </span>
+  return (
+    <div className="counter-action">
+      <span className="btn_action" onClick={() => dispatch(addToCart(item))}>
+        <AiOutlinePlus />
       </span>
-    );
-  }
-}
+      <span className="counter-num">{item.count}</span>
+    </div>
+  );
+};
 export default Counter;

@@ -1,12 +1,9 @@
 import { ADD_TO_CART, REMOVE_FROM_CART } from "./types";
-
+import { messageNotification } from "../util";
 export const addToCart = (product) => (dispatch) => {
   const cartList = localStorage.getItem("cartList")
     ? JSON.parse(localStorage.getItem("cartList"))
     : [];
-
-  console.log("cartList from act", cartList);
-  // console.log("product from act", product);
   if (cartList.length) {
     const itemInCartIndex = cartList.findIndex(
       (cartItem) => cartItem._id === product._id
@@ -21,16 +18,34 @@ export const addToCart = (product) => (dispatch) => {
   }
 
   localStorage.setItem("cartList", JSON.stringify(cartList));
-
-  console.log("current cart list  from action", cartList);
   return dispatch({
     type: ADD_TO_CART,
-    payload: JSON.parse(localStorage.getItem("cartList")),
+    payload: JSON.parse(
+      localStorage.getItem("cartList"),
+      messageNotification(
+        "success",
+        "GREATE",
+        "Added Successefully to the cart"
+      )
+    ),
   });
 };
 
-export const removeFromCart = (items, product) => (dispatch) => {
-  const cartList = items.slice().filter((a) => a.id !== product.id);
-  localStorage.setItem("cartList", JSON.stringify(cartList));
-  dispatch({ type: REMOVE_FROM_CART, payload: { cartList } });
+export const removeFromCart = (product) => (dispatch) => {
+  const cartList = localStorage.getItem("cartList")
+    ? JSON.parse(localStorage.getItem("cartList"))
+    : [];
+  const newCartList = cartList.filter((a) => a._id !== product._id);
+  localStorage.setItem("cartList", JSON.stringify(newCartList));
+  return dispatch({
+    type: REMOVE_FROM_CART,
+    payload: JSON.parse(
+      localStorage.getItem("cartList"),
+      messageNotification(
+        "danger",
+        "SORRY",
+        "Removed Successefully from the Carrt"
+      )
+    ),
+  });
 };

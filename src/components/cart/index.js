@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import { connect, useSelector, useDispatch } from "react-redux";
+import React from "react";
+import { connect, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import Counter from "../counter";
 import { AiFillCloseCircle } from "react-icons/ai";
@@ -7,35 +7,28 @@ import BreadCrumb from "../breadcrumb";
 import { addToCart, removeFromCart } from "../../redux/actions/cartActions";
 import { formatCurrency } from "../../redux/util";
 
-const ShoppingCart = () => {
+const ShoppingCart = (props) => {
   const cartList = localStorage.getItem("cartList")
     ? JSON.parse(localStorage.getItem("cartList"))
     : [];
-
-  console.log("cartList", cartList);
-
-  // const { cartList } = useSelector((state) => state.products);
   const dispatch = useDispatch();
-  const [totalPrice, setTotalPrice] = useState(0);
-  useEffect(() => {
-    let price = 0;
-    cartList.forEach((item) => {
-      price += item.qty * item.price;
-    });
-    setTotalPrice(price);
-  }, [cartList, totalPrice, setTotalPrice]);
 
   return (
     <>
       <BreadCrumb />
       <section className="cart_wrapper">
-        {cartList.length === 0 ? (
-          "Cart is empty"
-        ) : (
-          <div className="alert alert-success text-center">
-            You have {cartList.length} items in the Cart. <hr />
-          </div>
-        )}
+        <div className="cart-status">
+          {cartList.length === 0 ? (
+            <span className="alert alert-danger text-center">
+              "Your Cart is empty"
+            </span>
+          ) : (
+            <span className="alert alert-success text-center">
+              You have {cartList.length} items in the Cart.
+            </span>
+          )}
+        </div>
+
         {cartList.length > 0 && (
           <div className="container mt-5">
             <div className="table-responsive">
@@ -64,28 +57,19 @@ const ShoppingCart = () => {
                         </td>
                         <td>
                           <div>
-                            <Counter
-                              item={item}
-                              cartItemId={item._id}
-                              handleAddToCart={addToCart}
-                              // onChangeProductQuantity={changeProductQuantity}
-                            />
+                            <Counter item={item} cartItemId={item._id} />
                           </div>
                         </td>
                         <td>
-                          <div>{item.price} $</div>
+                          <div>{formatCurrency(item.price)}</div>
                         </td>
                         <td>
-                          {/* ${item.price * item.quantity} */}
-                          <span>{formatCurrency(totalPrice)}</span>
+                          <span>{formatCurrency(item.price * item.count)}</span>
                         </td>
                         <td>
                           <div
                             className="product-remove"
-                            // onClick={(e) =>
-                            //   removeFromCart(this.props.cartItems, item)
-                            // }
-                            onClick={() => dispatch(removeFromCart(item.id))}
+                            onClick={() => dispatch(removeFromCart(item))}
                           >
                             <AiFillCloseCircle />
                           </div>
@@ -98,10 +82,11 @@ const ShoppingCart = () => {
                   <tr>
                     <th colSpan="2">Total</th>
                     <th colSpan="2">
-                      {/* $
-                      {cartList.reduce((acc, cur) => {
-                        return (acc += cur.quantity * cur.product.price);
-                      }, 0)} */}
+                      {formatCurrency(
+                        cartList.reduce((acc, cur) => {
+                          return (acc += cur.count * cur.price);
+                        }, 0)
+                      )}
                     </th>
                     <th colSpan="2">
                       <Link className="btn btn-main btn-200" to="/checkout">
@@ -119,11 +104,9 @@ const ShoppingCart = () => {
   );
 };
 
-export default ShoppingCart;
-
-// const mapStateToProps = (state) => ({
-//   cartList: state.cart.items,
-// });
-// export default connect(mapStateToProps, { addToCart, removeFromCart })(
-//   ShoppingCart
-// );
+const mapStateToProps = (state) => ({
+  cartList: state.cart,
+});
+export default connect(mapStateToProps, { addToCart, removeFromCart })(
+  ShoppingCart
+);
