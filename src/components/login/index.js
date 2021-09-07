@@ -3,7 +3,8 @@ import Logo from "../../images/logo_company.svg";
 import { Link, useHistory } from "react-router-dom";
 import $ from "jquery";
 
-export default function Login() {
+export default function Login({ setToken }) {
+
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
   const history = useHistory();
@@ -20,9 +21,9 @@ export default function Login() {
     })
       .then((response) => response.json())
       .then((data) => {
-        // console.log("Success:", data);
+        console.log("Success:", data);
         if (!data.success) {
-          // console.log(data.message);
+          console.log(data.message);
           if (data.message == "This email doesn't exist!") {
             $(".psw-err").hide();
             $(".email-err").text(data.message);
@@ -38,6 +39,7 @@ export default function Login() {
           localStorage.setItem("User Token", data.token);
           localStorage.setItem("Email", data.userEmail);
           localStorage.setItem("ID", data.userId);
+          setToken(data.token);
           history.push("/");
         }
       })

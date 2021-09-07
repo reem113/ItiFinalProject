@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch, connect } from "react-redux";
 import Logo from "../../images/logo_company.svg";
+import { useHistory } from "react-router";
 
 import {
   Collapse,
@@ -23,7 +24,11 @@ import { removeFromCart } from "../../redux/actions/cartActions";
 import { formatCurrency } from "../../redux/util";
 
 const Header = (props) => {
+  const token = props.token;
+
   // // console.log("cart from header", cart);
+  const history = useHistory();
+
   const [isOpen, setIsOpen] = useState(false);
   const toggle = () => setIsOpen(!isOpen);
 
@@ -33,6 +38,18 @@ const Header = (props) => {
   const handleToggleSidebar = () => {
     toggleSidebar();
   };
+
+  const handleUserButton = () => {
+    (token) ? history.push("/profile") : history.push("/account");
+  }
+
+  const handleLogout = () => {
+    localStorage.removeItem("User Token");
+    localStorage.removeItem("ID");
+    localStorage.removeItem("Email");
+    props.setToken(null);
+    history.push("/account")
+  }
 
   const cartList = localStorage.getItem("cartList")
     ? JSON.parse(localStorage.getItem("cartList"))
@@ -81,25 +98,36 @@ const Header = (props) => {
             </Nav>
             <ul className="right-grid">
               <li>
-                <Link className="right-link" to="/account">
+                <span className="right-link" onClick={handleUserButton}>
                   <AiOutlineUser />
-                </Link>
-              </li>
-              <li>
-                <Link className="right-link" to="/wishlist">
-                  <AiOutlineHeart />
-                  <span className="counter cart">
-                    {wishlist.length === 0 ? "0" : wishlist.length}
-                  </span>
-                </Link>
-              </li>
-              <li>
-                <span className="right-link" onClick={handleToggleSidebar}>
-                  <AiOutlineShoppingCart />
-                  <span className="counter cart">
-                    {cartList.length === 0 ? "0" : cartList.length}
-                  </span>
                 </span>
+              </li>
+              <li>
+                {token && (
+                  <Link className="right-link" to="/wishlist">
+                    <AiOutlineHeart />
+                    <span className="counter cart">
+                      {wishlist.length === 0 ? "0" : wishlist.length}
+                    </span>
+                  </Link>
+                )}
+              </li>
+              <li>
+                {token && (
+                  <span className="right-link" onClick={handleToggleSidebar}>
+                    <AiOutlineShoppingCart />
+                    <span className="counter cart">
+                      {cartList.length === 0 ? "0" : cartList.length}
+                    </span>
+                  </span>
+                )}
+              </li>
+              <li>
+                {token &&
+                  <span className="right-link second-color" >
+                    <span className="logout" onClick={handleLogout}>Logout</span>
+                  </span>
+                }
               </li>
             </ul>
           </Collapse>

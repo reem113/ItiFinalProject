@@ -1,6 +1,7 @@
 import React from "react";
 import { connect, useDispatch } from "react-redux";
-import { Link } from "react-router-dom";
+import axios from "axios";
+import { useHistory } from "react-router";
 import Counter from "../counter";
 import { AiFillCloseCircle } from "react-icons/ai";
 import BreadCrumb from "../breadcrumb";
@@ -8,9 +9,20 @@ import { addToCart, removeFromCart } from "../../redux/actions/cartActions";
 import { formatCurrency } from "../../redux/util";
 
 const ShoppingCart = (props) => {
+  const history = useHistory();
   const cartList = localStorage.getItem("cartList")
     ? JSON.parse(localStorage.getItem("cartList"))
     : [];
+  const HandleRedirectPages = () => {
+    const URL = `http://localhost:8000/api/v1/addresses/`
+    const id = localStorage.getItem("ID");
+    axios.get(URL)
+      .then(res => {
+        const uservalue = res.data.addressList.find(address => address._userId === id);
+        (uservalue) ? history.push("/placeOrder") : history.push("/checkout");
+      })
+      .catch(err => { console.log(err); })
+  }
   const dispatch = useDispatch();
 
   return (
@@ -89,9 +101,9 @@ const ShoppingCart = (props) => {
                       )}
                     </th>
                     <th colSpan="2">
-                      <Link className="btn btn-main btn-200" to="/checkout">
+                      <button className="btn btn-main btn-200" onClick={HandleRedirectPages}>
                         To Checkout
-                      </Link>
+                      </button>
                     </th>
                   </tr>
                 </tfoot>

@@ -746,3 +746,61 @@ tfoot {
     margin: 0;
   }
 }
+.user-info {
+  color: black;
+  font-size: medium;
+  margin-left: 10px;
+}
+
+.price-details {
+  float: right;
+  color: black;
+}
+
+.total-price {
+  float: right;
+  @extend %total;
+}
+.total-title {
+  @extend %total;
+}
+
+.deliver-icon {
+  width: 100%;
+  height: 80px;
+  margin: 20px;
+  color: black;
+  float: right;
+}
+.wrap-container {
+  width: 90%;
+  padding: 10px;
+  border-radius: $radius;
+  margin: 15px auto;
+  border: 1px solid $control-color;
+  @extend %shadow;
+}
+.visa-icon {
+  color: blue;
+  width: 50px;
+  height: 50px;
+}
+.container-fluid {
+  background-color: rgb(236, 236, 236);
+}
+.card {
+  background-color: #fff;
+  margin: 2%;
+  padding: 2%;
+  border: 1px solid rgb(226, 226, 226);
+}
+
+.icons {
+  font-size: 25px;
+  display: inline-block;
+  color: black;
+}
+
+.full-width {
+  width: 90%;
+}
