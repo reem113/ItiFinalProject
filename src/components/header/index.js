@@ -1,5 +1,5 @@
-import { useState, useEffect } from "react";
-import { useSelector, useDispatch, connect } from "react-redux";
+import { useState } from "react";
+import { useDispatch, connect } from "react-redux";
 import Logo from "../../images/logo_company.svg";
 
 import {
@@ -50,7 +50,9 @@ const Header = (props) => {
           <NavbarBrand to="/">
             <img src={Logo} alt="company" />
           </NavbarBrand>
-          <NavbarToggler onClick={toggle} />
+          <NavbarToggler onClick={toggle} className="menu-wrapper">
+            <span className="hamburger-menu"></span>
+          </NavbarToggler>
           <Collapse isOpen={isOpen} navbar>
             <Nav className="mr-auto" navbar>
               <NavItem>

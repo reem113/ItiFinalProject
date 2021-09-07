@@ -2,7 +2,6 @@ import { ADD_TO_WISHLIST, REMOVE_FROM_WISHLIST } from "./types";
 import { messageNotification } from "../util";
 
 export const addToWishlist = (product) => (dispatch) => {
-  let liked = false;
   const wishlist = localStorage.getItem("wishlist")
     ? JSON.parse(localStorage.getItem("wishlist"))
     : [];
