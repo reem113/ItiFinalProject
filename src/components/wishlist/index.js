@@ -1,12 +1,40 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 import { AiFillCloseCircle } from "react-icons/ai";
 import BreadCrumb from "../breadcrumb";
 
-const Wishlist = (props) => {
-  const { wishlist, onRemoveWishlistProduct } = props;
-  console.log("wishlissssssst", wishlist);
+const Wishlist = () => {
+  const [wishlist, setWishlist] = useState(null);
+  const [wishlistChange, setWishlistChange] = useState(false);
+
+  const getWishlistProducts = async () => {
+    try {
+      const response = await fetch(
+        "http://localhost:8000/api/v1/users/610c965d7c24830ff49c91d9/wishlist"
+      );
+      const WishlistProducts = await response.json();
+      setWishlist(WishlistProducts.user.wishlist);
+    } catch (error) {}
+  };
+  const removeWishlistProduct = async (productId) => {
+    const URL = `http://localhost:8000/api/v1/users/610c965d7c24830ff49c91d9/wishlist/${productId}`;
+    try {
+      const response = await fetch(URL, {
+        method: "DELETE",
+      });
+      const WishlistProducts = await response.json();
+      setWishlistChange(!wishlistChange);
+    } catch (error) {}
+  };
+
+  useEffect(() => {
+    getWishlistProducts();
+  }, []);
+
+  useEffect(() => {
+    getWishlistProducts();
+  }, [wishlistChange]);
 
   return (
     <>
@@ -48,7 +76,7 @@ const Wishlist = (props) => {
                           <div
                             className="product-remove"
                             onClick={() =>
-                              onRemoveWishlistProduct(product.product._id)
+                              removeWishlistProduct(product.product._id)
                             }
                           >
                             <AiFillCloseCircle />

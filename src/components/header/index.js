@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import { useState, useEffect } from "react";
+import { useSelector, useDispatch, connect } from "react-redux";
 import Logo from "../../images/logo_company.svg";
 import { useHistory } from "react-router";
 
@@ -20,11 +21,19 @@ import {
   AiFillCloseCircle,
 } from "react-icons/ai";
 
+<<<<<<< HEAD
 const Header = ({ cart, onRemoveCartProduct, wishlist, token, setToken }) => {
   // console.log("cart from header", cart);
 
   const history = useHistory();
 
+=======
+import { addToCart } from "../../redux/actions/cartActions";
+// import { cartReducer } from "../../redux/reducers";
+
+const Header = (props) => {
+  // // console.log("cart from header", cart);
+>>>>>>> 6f2c89c77666ac48c3e6ccfbaf537b3bbb9bda76
   const [isOpen, setIsOpen] = useState(false);
   const toggle = () => setIsOpen(!isOpen);
 
@@ -35,6 +44,7 @@ const Header = ({ cart, onRemoveCartProduct, wishlist, token, setToken }) => {
     toggleSidebar();
   };
 
+<<<<<<< HEAD
   console.log("token", token);
 
   const handleUserButton = () => {
@@ -48,6 +58,22 @@ const Header = ({ cart, onRemoveCartProduct, wishlist, token, setToken }) => {
     setToken(null);
     history.push("/account")
   }
+=======
+  const { cart } = useSelector((state) => state);
+  console.log("cart in header", cart);
+  console.log("cartList length", cart.length);
+
+  const dispatch = useDispatch();
+  // // console.log("cart length in header", cart.cartList.cartList.length);
+  // console.log("props", props);
+  const { cartList } = props;
+  console.log("cartlist props", cartList);
+  // const [cartCounter, setCartCounter] = useState(0);
+  // useEffect(() => {
+  //   dispatch(addToCart());
+  // }, [setCartCounter]);
+  // console.log("cartCounter", cartCounter);
+>>>>>>> 6f2c89c77666ac48c3e6ccfbaf537b3bbb9bda76
 
   return (
     <div>
@@ -95,16 +121,26 @@ const Header = ({ cart, onRemoveCartProduct, wishlist, token, setToken }) => {
               </li>
               <li>
                 <Link className="right-link" to="/wishlist">
+<<<<<<< HEAD
                   {wishlist && token && (
                     <>
                       <AiOutlineHeart />
                       <span className="counter cart">{wishlist.length}</span>
                     </>
                   )}
+=======
+                  {/* {wishlist && ( */}
+                  <>
+                    <AiOutlineHeart />
+                    <span className="counter cart">wishlist.length</span>
+                  </>
+                  {/* )} */}
+>>>>>>> 6f2c89c77666ac48c3e6ccfbaf537b3bbb9bda76
                 </Link>
               </li>
               <li>
                 <Link className="right-link" to="/cart">
+<<<<<<< HEAD
                   {cart && token && (
                     <>
                       <AiOutlineShoppingCart />
@@ -125,10 +161,18 @@ const Header = ({ cart, onRemoveCartProduct, wishlist, token, setToken }) => {
                     </>
                   )}
                 </span> */}
+=======
+                  <AiOutlineShoppingCart />
+                  <span className="counter cart">
+                    {cart.length === 0 ? "0" : cart.length}
+                  </span>
+                </Link>
+>>>>>>> 6f2c89c77666ac48c3e6ccfbaf537b3bbb9bda76
               </li>
             </ul>
           </Collapse>
         </div>
+<<<<<<< HEAD
       </Navbar >
 
       <div
@@ -192,7 +236,15 @@ const Header = ({ cart, onRemoveCartProduct, wishlist, token, setToken }) => {
         )}
       </div>
     </div >
+=======
+      </Navbar>
+    </div>
+>>>>>>> 6f2c89c77666ac48c3e6ccfbaf537b3bbb9bda76
   );
 };
 
-export default Header;
+// export default Header;
+const mapStateToProps = (state) => ({
+  cartList: state.cart,
+});
+export default connect(mapStateToProps, { addToCart })(Header);

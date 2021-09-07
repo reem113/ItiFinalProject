@@ -11,7 +11,6 @@ class CollectionList extends React.Component {
               <h2>Get your Fashion style</h2>
               <p>
                 You’ll always be in fashion with our <br /> collection of
-                clothing{" "}
               </p>
               <div className="view_all__wrap col-12 px-0 mt-3">
                 <Link to="" className="link link-primary">

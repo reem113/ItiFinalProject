@@ -21,9 +21,9 @@ export default function Login({ setToken }) {
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log("Success:", data);
+        // console.log("Success:", data);
         if (!data.success) {
-          console.log(data.message);
+          // console.log(data.message);
           if (data.message == "This email doesn't exist!") {
             $(".psw-err").hide();
             $(".email-err").text(data.message);

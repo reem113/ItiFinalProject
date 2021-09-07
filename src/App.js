@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import ReactNotification from "react-notifications-component";
 import "react-notifications-component/dist/theme.css";
@@ -22,9 +22,8 @@ import Profile from "./components/profile";
 import PlaceOrder from "./components/placeOrder";
 
 function App() {
-  const id = localStorage.getItem("ID")
-  const [products, setProducts] = useState(null);
 
+<<<<<<< HEAD
   const [token, setToken] = useState();
 
   const [cartList, setCartList] = useState(null);
@@ -144,26 +143,23 @@ function App() {
       {/* <div render={(props) => <Header cartList={cartList} {...props} />} /> */}
 
       {/* <Header /> */}
+=======
+  return (
+    <Router>
+      <ReactNotification />
+      <Header />
+>>>>>>> 6f2c89c77666ac48c3e6ccfbaf537b3bbb9bda76
       <Switch>
-        <Route
-          path="/"
-          exact
-          render={(props) => <Home products={products} {...props} />}
-        />
+        <Route path="/" exact component={Home} />
         <Route path="/category" exact component={Category} />
         <Route path="/placeOrder" exact component={PlaceOrder} />
         <Route path="/contactus" exact component={ContactUs} />
         <Route path="/profile" exact component={Profile} />
         <Route path="/about" exact component={About} />
-        <Route
-          path="/product"
-          exact
-          render={(props) => <Product products={products} {...props} />}
-        />
-        <Route path="/products/:id" exact>
-          <ProductDetails />
-        </Route>
+        <Route path="/product" exact component={Product} />
+        <Route path="/products/:id" exact component={ProductDetails} />
         <Route path="/Account" exact component={Account} />
+<<<<<<< HEAD
         <Route
           path="/cart"
           exact
@@ -190,6 +186,11 @@ function App() {
         <Route path="/login" exact>
           <Login setToken={setToken} />
         </Route>
+=======
+        <Route path="/cart" exact component={Cart} />
+        <Route path="/wishlist" exact component={Wishlist} />
+        <Route path="/login" exact component={Login} />
+>>>>>>> 6f2c89c77666ac48c3e6ccfbaf537b3bbb9bda76
         <Route path="/signup" exact component={SignUp} />
         <Route path="/checkout" exact component={Checkout} />
         <Route path="*" exact component={Notfound} />
