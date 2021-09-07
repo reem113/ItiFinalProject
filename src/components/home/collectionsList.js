@@ -18,7 +18,7 @@ class CollectionList extends React.Component {
                 </Link>
               </div>
             </div>
-            <div className="col-xl-4 col-lg-4 col-md-4 col-12">
+            <div className="col-xl-4 col-lg-4 col-md-4 col-6">
               <Link className="collection_item" to="">
                 <div className="collection_img">
                   <img
@@ -32,8 +32,8 @@ class CollectionList extends React.Component {
                 </div>
               </Link>
             </div>
-            <div className="col-xl-4 col-lg-4 col-md-4 col-12">
-              <Link className="collection_item" to="/collections/mens">
+            <div className="col-xl-4 col-lg-4 col-md-4 col-6">
+              <Link className="collection_item" to="">
                 <div className="collection_img">
                   <img
                     className="blur-up img-fluid w-100 img-fluid lazyloaded"

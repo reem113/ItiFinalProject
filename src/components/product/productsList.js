@@ -19,7 +19,7 @@ const ProductsList = () => {
   );
 
   return (
-    <section className="bg-grey">
+    <section className="bg-grey products_wrapper">
       <div className="container">
         <div className="wrap-title">
           <h3 className="section-title">
